@@ -1,11 +1,11 @@
 [build]
 publish = "."
 
+[build.environment]
+  NODE_VERSION = "18"
+
 [[plugins]]
 package = "netlify-plugin-sitemap"
 
   [plugins.inputs]
   baseUrl = "https://rekmakarya.com"
-  prettyURLs = true
-  changeFreq = "weekly"
-  priority = 0.8
