@@ -1,0 +1,35 @@
+name: Auto-Sitemap-Ganas
+
+on:
+  push:
+    branches: [ "main" ]
+  schedule:
+    - cron: "0 0 * * *"   # update tiap jam 00:00 (setiap hari)
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout Repo
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Setup Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: "20"
+
+      - name: Generate sitemap.xml
+        run: node scripts/generate-sitemap.js
+
+      - name: Commit & Push sitemap.xml
+        uses: stefanzweifel/git-auto-commit-action@v5
+        with:
+          commit_message: "auto: update sitemap harian"
+          file_pattern: sitemap.xml
