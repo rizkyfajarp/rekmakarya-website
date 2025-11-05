@@ -1,35 +1,66 @@
-name: Auto-Sitemap-Ganas
+name: Auto Index (Google ping + IndexNow)
 
 on:
   push:
     branches: [ "main" ]
   schedule:
-    - cron: "0 0 * * *"   # update tiap jam 00:00 (setiap hari)
+    - cron: "5 0 * * *"   # tiap hari 07:05 WIB (00:05 UTC)
   workflow_dispatch:
 
 permissions:
   contents: write
 
 jobs:
-  build:
+  run:
     runs-on: ubuntu-latest
-
     steps:
-      - name: Checkout Repo
+      - name: Checkout
         uses: actions/checkout@v4
-        with:
-          fetch-depth: 0
+        with: { fetch-depth: 0 }
 
       - name: Setup Node
         uses: actions/setup-node@v4
-        with:
-          node-version: "20"
+        with: { node-version: "20" }
 
+      # 1) Re-generate sitemap (pastikan selalu fresh)
       - name: Generate sitemap.xml
         run: node scripts/generate-sitemap.js
 
-      - name: Commit & Push sitemap.xml
+      - name: Commit updated sitemap
         uses: stefanzweifel/git-auto-commit-action@v5
         with:
-          commit_message: "auto: update sitemap harian"
+          commit_message: "chore: auto-update sitemap"
           file_pattern: sitemap.xml
+
+      # 2) Extract URLs from sitemap for IndexNow
+      - name: Parse sitemap -> urls.txt
+        run: |
+          python - << 'PY'
+          import xml.etree.ElementTree as ET
+          import sys
+          tree = ET.parse('sitemap.xml')
+          root = tree.getroot()
+          ns = {'sm': 'http://www.sitemaps.org/schemas/sitemap/0.9'}
+          urls = [u.find('sm:loc', ns).text.strip() for u in root.findall('sm:url', ns)]
+          with open('urls.txt','w') as f:
+            f.write("\n".join(urls))
+          print(f"Wrote {len(urls)} urls")
+          PY
+
+      # 3) Ping Google Sitemaps (resmi, aman)
+      - name: Ping Google with sitemap
+        run: curl -s "https://www.google.com/ping?sitemap=https://rekmakarya.com/sitemap.xml" || true
+
+      # 4) IndexNow bulk submit to Bing
+      #    NOTE: ganti KEY di bawah agar sama dengan indexnow.txt di root situs
+      - name: Submit URLs to IndexNow (Bing)
+        run: |
+          KEY="b1a1e34f4c3d4e29a8b8c7d6e5f4a3b2"   # ganti dgn key kamu
+          HOST="rekmakarya.com"
+          KEYLOC="https://rekmakarya.com/indexnow.txt"
+          URLS=$(paste -sd '\\n' urls.txt)
+          echo "Submitting to IndexNow..."
+          curl -s -X POST "https://www.bing.com/indexnow" \
+            -H "Content-Type: application/json; charset=utf-8" \
+            -d "$(jq -n --arg host "$HOST" --arg key "$KEY" --arg keyLocation "$KEYLOC" --arg urls "$URLS" \
+              '{host:$host,key:$key,keyLocation:$keyLocation, urlList: ($urls | split("\n") | map(select(length>0)))}')" || true

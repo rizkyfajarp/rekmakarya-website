@@ -2,3 +2,4 @@ User-agent: *
 Allow: /
 
 Sitemap: https://rekmakarya.com/sitemap.xml
+# IndexNow (optional comment): https://www.bing.com/indexnow
