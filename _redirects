@@ -1,9 +1,2 @@
-# Paksa HTTPS (Netlify biasanya auto, tapi kita kunci)
 http://* https://:splat 301!
-
-# Paksa non-www ke apex (SEO konsisten)
 https://www.rekmakarya.com/* https://rekmakarya.com/:splat 301!
-
-# (Opsional) canon trailing slash:
-# kalau mau tanpa trailing slash untuk path folder, aktifkan:
-# /*  /:splat  200!
