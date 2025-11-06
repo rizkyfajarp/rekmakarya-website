@@ -1,0 +1,48 @@
+name: RekMakarya • Optimize & Auto-commit
+
+on:
+  push:
+    branches: [ main ]
+    paths:
+      - "**/*.html"
+      - "**/*.css"
+      - "**/*.js"
+      - "images/**"
+  workflow_dispatch:
+
+env:
+  TZ: Asia/Jakarta
+
+jobs:
+  optimize:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout (full history for git dates)
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Setup Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: "20"
+
+      - name: Install deps for optimization scripts
+        run: |
+          npm init -y >/dev/null 2>&1
+          npm i cheerio image-size html-minifier-terser csso terser globby fast-glob --save-dev
+
+      - name: Run: fix meta dates
+        run: node scripts/fix-meta-dates.js
+
+      - name: Run: add image dimensions (width/height)
+        run: node scripts/add-img-dimensions.js
+
+      - name: Run: minify html/css/js
+        run: node scripts/minify-html-css-js.js
+
+      - name: Commit optimized files
+        uses: stefanzweifel/git-auto-commit-action@v5
+        with:
+          commit_message: "chore(optimize): meta dates + img dims + minify (auto)"
+          branch: main
