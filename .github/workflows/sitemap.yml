@@ -4,7 +4,7 @@ on:
   push:
     branches: [ "main" ]
   schedule:
-    - cron: "5 0 * * *"   # tiap hari 07:05 WIB (00:05 UTC)
+    - cron: "5 0 * * *"    # 07:05 WIB (00:05 UTC)
   workflow_dispatch:
 
 permissions:
@@ -13,6 +13,7 @@ permissions:
 jobs:
   run:
     runs-on: ubuntu-latest
+
     steps:
       - name: Checkout
         uses: actions/checkout@v4
@@ -22,45 +23,94 @@ jobs:
         uses: actions/setup-node@v4
         with: { node-version: "20" }
 
-      # 1) Re-generate sitemap (pastikan selalu fresh)
+      - name: Setup Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.x"
+
+      # 1) Re-generate sitemap
       - name: Generate sitemap.xml
         run: node scripts/generate-sitemap.js
 
+      # 2) Commit jika berubah
       - name: Commit updated sitemap
         uses: stefanzweifel/git-auto-commit-action@v5
         with:
           commit_message: "chore: auto-update sitemap"
           file_pattern: sitemap.xml
 
-      # 2) Extract URLs from sitemap for IndexNow
+      # 3) (Opsional) Purge CDN untuk sitemap agar versi baru langsung served
+      # - name: Purge Cloudflare cache (sitemap only)
+      #   if: ${{ secrets.CF_ZONE_ID && secrets.CF_API_TOKEN }}
+      #   run: |
+      #     curl -s -X POST "https://api.cloudflare.com/client/v4/zones/${{ secrets.CF_ZONE_ID }}/purge_cache" \
+      #       -H "Authorization: Bearer ${{ secrets.CF_API_TOKEN }}" \
+      #       -H "Content-Type: application/json" \
+      #       --data '{"files":["https://rekmakarya.com/sitemap.xml"]}'
+
+      # 4) Tunggu Netlify deploy (poll sampai sitemap versi terbaru tersedia)
+      - name: Wait until Netlify serves the fresh sitemap (max ~5 min)
+        env:
+          URL: https://rekmakarya.com/sitemap.xml
+        run: |
+          echo "Polling $URL ..."
+          ATTEMPTS=30
+          SLEEP=10
+          ok=0
+          for i in $(seq 1 $ATTEMPTS); do
+            # Simulasi Googlebot juga (untuk deteksi challenge/403 dari Cloudflare)
+            CODE=$(curl -s -o /dev/null -w "%{http_code}" -A "Mozilla/5.0 (compatible; Googlebot/2.1; +http://www.google.com/bot.html)" "$URL")
+            echo "Attempt $i/$ATTEMPTS → HTTP $CODE"
+            if [ "$CODE" = "200" ]; then
+              ok=1; break
+            fi
+            sleep $SLEEP
+          done
+          if [ "$ok" != "1" ]; then
+            echo "Sitemap belum 200 OK untuk Googlebot. Lanjut tetap, tapi disarankan cek Cloudflare WAF/Bot mode."
+          fi
+
+      # 5) Parse sitemap → urls.txt
       - name: Parse sitemap -> urls.txt
         run: |
           python - << 'PY'
           import xml.etree.ElementTree as ET
-          import sys
-          tree = ET.parse('sitemap.xml')
-          root = tree.getroot()
           ns = {'sm': 'http://www.sitemaps.org/schemas/sitemap/0.9'}
+          root = ET.parse('sitemap.xml').getroot()
           urls = [u.find('sm:loc', ns).text.strip() for u in root.findall('sm:url', ns)]
-          with open('urls.txt','w') as f:
-            f.write("\n".join(urls))
+          open('urls.txt','w').write("\n".join(urls))
           print(f"Wrote {len(urls)} urls")
           PY
 
-      # 3) Ping Google Sitemaps (resmi, aman)
+      # 6) Ping Google (resmi)
       - name: Ping Google with sitemap
-        run: curl -s "https://www.google.com/ping?sitemap=https://rekmakarya.com/sitemap.xml" || true
-
-      # 4) IndexNow bulk submit to Bing
-      #    NOTE: ganti KEY di bawah agar sama dengan indexnow.txt di root situs
-      - name: Submit URLs to IndexNow (Bing)
         run: |
-          KEY="b1a1e34f4c3d4e29a8b8c7d6e5f4a3b2"   # ganti dgn key kamu
-          HOST="rekmakarya.com"
-          KEYLOC="https://rekmakarya.com/indexnow.txt"
-          URLS=$(paste -sd '\\n' urls.txt)
-          echo "Submitting to IndexNow..."
-          curl -s -X POST "https://www.bing.com/indexnow" \
-            -H "Content-Type: application/json; charset=utf-8" \
-            -d "$(jq -n --arg host "$HOST" --arg key "$KEY" --arg keyLocation "$KEYLOC" --arg urls "$URLS" \
-              '{host:$host,key:$key,keyLocation:$keyLocation, urlList: ($urls | split("\n") | map(select(length>0)))}')" || true
+          curl -fsS "https://www.google.com/ping?sitemap=https://rekmakarya.com/sitemap.xml" || echo "Google ping non-fatal"
+
+      # 7) IndexNow bulk submit (chunk ≤10k, pakai Secrets)
+      - name: Submit URLs to IndexNow (Bing)
+        env:
+          INDEXNOW_KEY: ${{ secrets.INDEXNOW_KEY }}
+          HOST: rekmakarya.com
+          KEYLOC: https://rekmakarya.com/indexnow.txt
+        run: |
+          if [ -z "$INDEXNOW_KEY" ]; then
+            echo "INDEXNOW_KEY secret not set, skipping IndexNow."; exit 0
+          fi
+
+          # split per 10000 URL
+          mkdir -p chunks
+          split -l 10000 urls.txt chunks/urls_
+          for f in chunks/urls_*; do
+            URLS_JSON=$(jq -R -s 'split("\n") | map(select(length>0))' "$f")
+            BODY=$(jq -n \
+              --arg host "$HOST" \
+              --arg key "$INDEXNOW_KEY" \
+              --arg keyLocation "$KEYLOC" \
+              --argjson urlList "$URLS_JSON" \
+              '{host:$host, key:$key, keyLocation:$keyLocation, urlList:$urlList}')
+            echo "Submitting $(wc -l < "$f") URLs to IndexNow..."
+            curl -fsS -X POST "https://www.bing.com/indexnow" \
+              -H "Content-Type: application/json; charset=utf-8" \
+              -d "$BODY" || echo "IndexNow submit failed (non-fatal for this batch)"
+          done
