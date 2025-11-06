@@ -1,0 +1,41 @@
+name: Update JSON-LD Dates
+
+on:
+  push:
+    branches: [ "main" ]
+    paths:
+      - "blog/**/*.html"
+      - "services/**/*.html"
+      - "scripts/update-dates.js"
+  schedule:
+    - cron: "0 0 * * 0"   # Mingguan, Minggu 07:00 WIB (00:00 UTC)
+  workflow_dispatch:
+
+jobs:
+  run:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with: { fetch-depth: 0 }   # penting agar git log lengkap
+
+      - uses: actions/setup-node@v4
+        with: { node-version: "20" }
+
+      - name: Run updater
+        run: node scripts/update-dates.js
+
+      - name: Commit changes
+        uses: stefanzweifel/git-auto-commit-action@v5
+        with:
+          commit_message: "chore(schema): bump dateModified & meta article times (auto)"
+          commit_user_name: rekmakarya-bot
+          commit_user_email: bot@rekmakarya.com
+          push_options: --force-with-lease
+
+      # Optional: regenerate sitemap (kalau kamu sudah punya script-nya)
+      # - name: Generate sitemap.xml
+      #   run: node scripts/generate-sitemap.js
+      # - name: Commit sitemap
+      #   uses: stefanzweifel/git-auto-commit-action@v5
+      #   with:
+      #     commit_message: "chore: update sitemap lastmod (auto)"
