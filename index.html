@@ -1,41 +1,106 @@
 <!DOCTYPE html>
 <html lang="id">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Rek Makarya - Jasa Bangunan Terpercaya di Purbalingga</title>
-    <meta name="description" content="Jasa bangunan profesional di Purbalingga: Plafon, Water Heater, Renovasi Rumah, Bongkar Bangunan. Tukang ahli, free survey, harga transparan.">
-    
-    <!-- Bootstrap CSS -->
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
-    
-    <style>
-        .hero-section {
-            background: linear-gradient(rgba(44, 62, 80, 0.9), rgba(44, 62, 80, 0.9));
-            background-size: cover;
-            background-position: center;
-            color: white;
-            padding: 120px 0;
-        }
-        .service-card {
-            transition: transform 0.3s ease;
-            border: none;
-            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
-            height: 100%;
-        }
-        .service-card:hover {
-            transform: translateY(-10px);
-        }
-        .navbar-brand {
-            font-weight: bold;
-            font-size: 1.5rem;
-        }
-        .cta-button {
-            padding: 12px 30px;
-            font-weight: 600;
-        }
-    </style>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+
+  <!-- ✅ SEO: Title & Description -->
+  <title>Jasa Bangunan Purbalingga » Plafon, Renovasi, Water Heater | Rek Makarya</title>
+  <meta name="description" content="Jasa bangunan profesional di Purbalingga: plafon gypsum/PVC, renovasi rumah, water heater, bongkar bangunan. Harga transparan, free survey, tukang berpengalaman.">
+
+  <!-- ✅ Canonical -->
+  <link rel="canonical" href="https://rekmakarya.com/">
+
+  <!-- ✅ Robots -->
+  <meta name="robots" content="index,follow,max-snippet:-1,max-image-preview:large,max-video-preview:-1">
+
+  <!-- ✅ Performance: Preconnect & Bootstrap Preload -->
+  <meta http-equiv="x-dns-prefetch-control" content="on">
+  <link rel="dns-prefetch" href="//cdn.jsdelivr.net">
+  <link rel="preconnect" href="https://cdn.jsdelivr.net" crossorigin>
+
+  <link rel="preload" as="style" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" media="print" onload="this.media='all'">
+  <noscript><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css"></noscript>
+
+  <!-- ✅ Minimal Critical CSS -->
+  <style>
+    .hero-section{background:linear-gradient(rgba(44,62,80,.9),rgba(44,62,80,.9));color:#fff;padding:120px 0}
+    .service-card{transition:.3s;border:none;box-shadow:0 5px 15px rgba(0,0,0,.1);height:100%}
+    .service-card:hover{transform:translateY(-10px)}
+    .navbar-brand{font-weight:700;font-size:1.5rem}
+    .cta-button{padding:12px 30px;font-weight:600}
+  </style>
+
+  <!-- ✅ SECURITY META (ringan & aman untuk static hosting) -->
+  <meta http-equiv="Content-Security-Policy" content="upgrade-insecure-requests">
+  <meta name="referrer" content="strict-origin-when-cross-origin">
+  <meta http-equiv="Permissions-Policy" content="geolocation=(), microphone=(), camera=(), payment=(), interest-cohort=()">
+
+  <!-- ✅ OpenGraph (tanpa gambar!) -->
+  <meta property="og:locale" content="id_ID">
+  <meta property="og:type" content="website">
+  <meta property="og:title" content="Jasa Bangunan Purbalingga | Rek Makarya">
+  <meta property="og:description" content="Layanan bangunan profesional di Purbalingga: plafon, renovasi, water heater, bongkar. Harga jujur & tukang ahli.">
+  <meta property="og:url" content="https://rekmakarya.com/">
+  <!-- OG image kosong = fallback default sosial media -->
+  <meta property="og:image" content="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVR4nGNk+M/wHwAFgwJ/lp78xwAAAABJRU5ErkJggg==">
+
+  <!-- ✅ Twitter Card (tanpa gambar) -->
+  <meta name="twitter:card" content="summary">
+  <meta name="twitter:title" content="Jasa Bangunan Purbalingga | Rek Makarya">
+  <meta name="twitter:description" content="Layanan bangunan profesional di Purbalingga: plafon, renovasi, water heater, bongkar.">
+
+  <!-- ✅ GEO / Local SEO Purbalingga -->
+  <meta name="geo.region" content="ID-JT">
+  <meta name="geo.placename" content="Purbalingga">
+  <meta name="geo.position" content="-7.3909;109.3630">
+  <meta name="ICBM" content="-7.3909, 109.3630">
+
+  <!-- ✅ SCHEMA 1: LocalBusiness -->
+  <script type="application/ld+json">
+  {
+    "@context":"https://schema.org",
+    "@type":["Organization","LocalBusiness"],
+    "name":"Rek Makarya",
+    "url":"https://rekmakarya.com/",
+    "description":"Jasa bangunan profesional di Purbalingga: plafon, renovasi, water heater, bongkar rumah.",
+    "telephone":"+62-8xx-xxxx-xxxx",
+    "address":{
+      "@type":"PostalAddress",
+      "addressLocality":"Purbalingga",
+      "addressRegion":"Jawa Tengah",
+      "addressCountry":"ID"
+    },
+    "geo":{
+      "@type":"GeoCoordinates",
+      "latitude":-7.3909,
+      "longitude":109.3630
+    }
+  }
+  </script>
+
+  <!-- ✅ SCHEMA 2: Breadcrumb -->
+  <script type="application/ld+json">
+  {
+    "@context":"https://schema.org",
+    "@type":"BreadcrumbList",
+    "itemListElement":[
+      {
+        "@type":"ListItem",
+        "position":1,
+        "name":"Beranda",
+        "item":"https://rekmakarya.com/"
+      }
+    ]
+  }
+  </script>
+
+  <!-- Misc -->
+  <meta name="theme-color" content="#0d6efd">
+  <meta name="format-detection" content="telephone=yes">
 </head>
+
 <body>
     <!-- Navigation -->
     <nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top">
