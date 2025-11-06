@@ -1,0 +1,37 @@
+name: Auto SEO Builder
+on:
+  push:
+    branches: [ "main" ]
+  workflow_dispatch:
+
+jobs:
+  seo_build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Setup Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: 20
+
+      - name: Install dependencies
+        run: npm install glob fs-extra jsdom
+
+      - name: Auto fix SEO meta + schema + sitemap
+        run: node scripts/auto-seo.js
+
+      - name: Commit SEO changes
+        uses: stefanzweifel/git-auto-commit-action@v5
+        with:
+          commit_message: "chore: auto SEO update"
+
+      - name: Deploy to Netlify
+        run: |
+          npm install -g netlify-cli
+          netlify deploy --prod --dir=./ --auth=$NETLIFY_AUTH_TOKEN --site=$NETLIFY_SITE_ID
+
+      - name: Ping IndexNow & Google
+        run: |
+          curl -s "https://www.bing.com/indexnow?url=https://rekmakarya.com/sitemap.xml&key=$INDEXNOW_KEY"
+          curl -X POST "https://www.google.com/ping?sitemap=https://rekmakarya.com/sitemap.xml"
