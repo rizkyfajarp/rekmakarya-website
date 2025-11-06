@@ -1,37 +1,137 @@
 name: Auto SEO Builder
+
 on:
   push:
     branches: [ "main" ]
+  schedule:
+    - cron: "5 0 * * *"   # tiap hari 07:05 WIB
   workflow_dispatch:
+
+permissions:
+  contents: write
 
 jobs:
   seo_build:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
+        with: { fetch-depth: 0 }
 
       - name: Setup Node
         uses: actions/setup-node@v4
         with:
           node-version: 20
+          cache: 'npm'
 
-      - name: Install dependencies
+      - name: Install lightweight deps
         run: npm install glob fs-extra jsdom
 
-      - name: Auto fix SEO meta + schema + sitemap
+      # === NEW === Stamp tanggal publish/modified + JSON-LD di semua *.html
+      - name: Stamp dates (article meta + JSON-LD)
+        run: |
+          node - <<'NODE'
+          const {execSync} = require('child_process');
+          const fs = require('fs');
+          const glob = require('glob');
+          const {JSDOM} = require('jsdom');
+
+          // helper ambil tanggal dari git
+          function gitFirstDate(f){
+            try {
+              const out = execSync(`git log --diff-filter=A --date=short --format=%ad -- "${f}" | tail -1`).toString().trim();
+              return out || null;
+            } catch { return null; }
+          }
+          function gitLastDate(f){
+            try {
+              return execSync(`git log -1 --date=short --format=%ad -- "${f}"`).toString().trim();
+            } catch { return null; }
+          }
+
+          const files = glob.sync('**/*.html', {ignore:['node_modules/**', 'dist/**', '.netlify/**']});
+          for (const f of files){
+            const html = fs.readFileSync(f, 'utf8');
+            const dom = new JSDOM(html);
+            const d = dom.window.document;
+
+            const pub = gitFirstDate(f) || gitLastDate(f) || new Date().toISOString().slice(0,10);
+            const mod = gitLastDate(f) || pub;
+
+            // <meta property="article:published_time|modified_time">
+            const ensureMeta = (prop, val) => {
+              let el = d.querySelector(`meta[property="${prop}"]`);
+              if (!el) { el = d.createElement('meta'); el.setAttribute('property', prop); d.head.appendChild(el); }
+              el.setAttribute('content', val);
+            };
+            ensureMeta('article:published_time', pub);
+            ensureMeta('article:modified_time',  mod);
+
+            // JSON-LD: set datePublished/dateModified jika ada
+            const scripts = [...d.querySelectorAll('script[type="application/ld+json"]')];
+            scripts.forEach(s=>{
+              try{
+                const json = JSON.parse(s.textContent.trim());
+                const list = Array.isArray(json) ? json : [json];
+                let changed = false;
+                for (const obj of list){
+                  if (obj && typeof obj==='object'){
+                    if (obj.datePublished){ obj.datePublished = pub; changed = true; }
+                    if (obj.dateModified){  obj.dateModified  = mod; changed = true; }
+                  }
+                }
+                if (changed) s.textContent = JSON.stringify(Array.isArray(json)?list:list[0], null, 2);
+              }catch{}
+            });
+
+            fs.writeFileSync(f, dom.serialize());
+          }
+          NODE
+
+      - name: Run your SEO script
         run: node scripts/auto-seo.js
+
+      # Optional: minify HTML sedikit (aman, non-destruktif)
+      - name: Minify HTML
+        uses: taha-sh/html-minifier@v0.11.0
+        with:
+          src: "."
+          args: "--collapse-whitespace --remove-comments --minify-css true --minify-js true --file-ext html"
 
       - name: Commit SEO changes
         uses: stefanzweifel/git-auto-commit-action@v5
         with:
-          commit_message: "chore: auto SEO update"
+          commit_message: "chore: auto-stamp dates + auto-seo + minify"
+          commit_user_name: "rekmakarya-bot"
+          commit_user_email: "bot@rekmakarya.com"
 
-      - name: Deploy to Netlify
+      # === CONDITIONAL DEPLOY ===
+      - name: Deploy to Netlify (conditional)
+        if: ${{ env.NETLIFY_AUTH_TOKEN != '' && env.NETLIFY_SITE_ID != '' }}
+        env:
+          NETLIFY_AUTH_TOKEN: ${{ secrets.NETLIFY_AUTH_TOKEN }}
+          NETLIFY_SITE_ID:    ${{ secrets.NETLIFY_SITE_ID }}
         run: |
-          npm install -g netlify-cli
-          netlify deploy --prod --dir=./ --auth=$NETLIFY_AUTH_TOKEN --site=$NETLIFY_SITE_ID
+          npm i -g netlify-cli
+          netlify deploy --prod --dir=./ --auth="$NETLIFY_AUTH_TOKEN" --site="$NETLIFY_SITE_ID"
 
-      - name: Ping IndexNow & Google
+      # Kalau nanti pindah ke Cloudflare Pages (preview):
+      # - name: Deploy to Cloudflare Pages (conditional)
+      #   if: ${{ env.CLOUDFLARE_API_TOKEN != '' && env.CF_ACCOUNT_ID != '' && env.CF_PROJECT != '' }}
+      #   env:
+      #     CLOUDFLARE_API_TOKEN: ${{ secrets.CLOUDFLARE_API_TOKEN }}
+      #     CF_ACCOUNT_ID:        ${{ secrets.CF_ACCOUNT_ID }}
+      #     CF_PROJECT:           ${{ secrets.CF_PROJECT }}
+      #   run: |
+      #     npm i -g wrangler
+      #     wrangler pages deploy . --project-name "$CF_PROJECT" --branch main
+
+      - name: Ping Google & IndexNow
+        env:
+          INDEXNOW_KEY: ${{ secrets.INDEXNOW_KEY }}
         run: |
-          curl -s "https://www.bing.com/indexnow?url=https://rekmakarya.com/sitemap.xml&key=$INDEXNOW_KEY"
-          curl -X POST "https://www.google.com/ping?sitemap=https://rekmakarya.com/sitemap.xml"
+          # Google harus GET (bukan POST)
+          curl -s "https://www.google.com/ping?sitemap=https://rekmakarya.com/sitemap.xml" || true
+          # IndexNow (opsional): pastikan kamu punya file key di /indexnow-key.txt kalau pakai key berbasis file
+          curl -s -X POST -H 'Content-Type: application/json; charset=utf-8' \
+            -d "{\"host\":\"rekmakarya.com\",\"key\":\"$INDEXNOW_KEY\",\"urlList\":[\"https://rekmakarya.com/sitemap.xml\"]}" \
+            https://api.indexnow.org/indexnow || true
