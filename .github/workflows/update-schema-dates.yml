@@ -1,0 +1,37 @@
+name: Update JSON-LD Dates
+
+on:
+  workflow_dispatch:
+  schedule:
+    - cron: "15 0 * * *"   # setiap hari 07:15 WIB (00:15 UTC)
+  push:
+    branches: ["main"]
+
+permissions:
+  contents: write
+
+jobs:
+  run:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout (full history for git dates)
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Setup Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: "20"
+
+      - name: Install glob helper
+        run: npm i --no-save glob@10
+
+      - name: Update JSON-LD dates
+        run: node scripts/update-schema-dates.mjs
+
+      - name: Commit changes (if any)
+        uses: stefanzweifel/git-auto-commit-action@v5
+        with:
+          commit_message: "chore(seo): auto-update datePublished/dateModified from git history"
+          file_pattern: "**/*.html"
