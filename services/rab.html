@@ -1,0 +1,855 @@
+<!DOCTYPE html>
+<html lang="id">
+
+<head>
+    <meta charset="UTF-8" />
+    <title>Kalkulator Plafon PVC (Mode Tukang)</title>
+    <style>
+        body {
+            font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+            max-width: 720px;
+            margin: 24px auto;
+            padding: 0 12px;
+        }
+
+        h1 {
+            font-size: 22px;
+            margin-bottom: 4px;
+        }
+
+        h2 {
+            font-size: 18px;
+            margin-top: 24px;
+            margin-bottom: 6px;
+        }
+
+        small {
+            color: #666;
+        }
+
+        label {
+            display: block;
+            margin-top: 10px;
+            font-weight: 600;
+        }
+
+        input[type="number"] {
+            width: 100%;
+            padding: 6px 8px;
+            margin-top: 4px;
+            box-sizing: border-box;
+            border-radius: 4px;
+            border: 1px solid #ccc;
+        }
+
+        .group-label {
+            margin-top: 12px;
+            font-weight: 600;
+        }
+
+        .radio-group label {
+            display: inline-block;
+            margin-right: 14px;
+            font-weight: 400;
+        }
+
+        select {
+            margin-top: 4px;
+            padding: 6px 8px;
+            border-radius: 4px;
+            border: 1px solid #ccc;
+        }
+
+        button {
+            margin-top: 16px;
+            padding: 8px 14px;
+            cursor: pointer;
+            border-radius: 4px;
+            border: 1px solid #333;
+            background: #111;
+            color: #fff;
+            font-weight: 600;
+        }
+
+        button:hover {
+            opacity: 0.9;
+        }
+
+        .result {
+            margin-top: 18px;
+            padding: 12px;
+            border: 1px solid #ddd;
+            border-radius: 6px;
+            background: #fafafa;
+            line-height: 1.5;
+        }
+
+        .warning {
+            margin-top: 8px;
+            font-size: 12px;
+            color: #b45309;
+            background: #fffbeb;
+            border: 1px solid #fed7aa;
+            padding: 6px 8px;
+            border-radius: 4px;
+        }
+
+        #canvasRangka {
+            margin-top: 10px;
+            padding: 15px;
+            background: #f8f9fa;
+            border: 1px solid #dee2e6;
+            border-radius: 8px;
+        }
+
+        #canvasRangka svg {
+            width: 100%;
+            height: auto;
+            max-width: 100%;
+            display: block;
+        }
+
+        .color-option {
+            display: inline-block;
+            width: 20px;
+            height: 20px;
+            margin-right: 8px;
+            border: 1px solid #ccc;
+            vertical-align: middle;
+        }
+
+        .color-preview {
+            width: 100%;
+            height: 60px;
+            border: 1px solid #ccc;
+            margin-top: 8px;
+            position: relative;
+            background: white;
+        }
+
+        .border-preview {
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            border: 15px solid #000;
+        }
+
+        .field-preview {
+            position: absolute;
+            top: 15px;
+            left: 15px;
+            right: 15px;
+            bottom: 15px;
+            background: white;
+        }
+
+        .visual-info {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 10px;
+            margin-top: 15px;
+            font-size: 12px;
+        }
+
+        .color-badge {
+            display: flex;
+            align-items: center;
+            gap: 6px;
+            padding: 8px;
+            border-radius: 4px;
+            background: white;
+            border: 1px solid #dee2e6;
+        }
+
+        .color-swatch {
+            width: 20px;
+            height: 20px;
+            border: 1px solid #ccc;
+            border-radius: 3px;
+        }
+
+        .lis-info {
+            background: #e7f3ff;
+            padding: 10px;
+            border-radius: 6px;
+            margin-top: 10px;
+            font-size: 12px;
+            border-left: 4px solid #0d6efd;
+        }
+
+        .legend {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+            margin-top: 10px;
+            font-size: 11px;
+        }
+
+        .legend-item {
+            display: flex;
+            align-items: center;
+            gap: 5px;
+        }
+
+        .legend-color {
+            width: 12px;
+            height: 12px;
+            border-radius: 2px;
+        }
+    </style>
+</head>
+
+<body>
+    <h1>Kalkulator Plafon PVC (Mode Tukang)</h1>
+    <small>Mode tukang – hollow 4m, potongan PVC & cadangan sudah dipikirkan.</small>
+
+    <p>Masukkan ukuran ruangan dalam <b>cm</b> (dua sisi panjang & dua sisi lebar):</p>
+
+    <label>Panjang 1 (cm)
+        <input type="number" id="p1" placeholder="misal 400" value="400" />
+    </label>
+    <label>Panjang 2 (cm)
+        <input type="number" id="p2" placeholder="misal 398" value="398" />
+    </label>
+    <label>Lebar 1 (cm)
+        <input type="number" id="l1" placeholder="misal 300" value="300" />
+    </label>
+    <label>Lebar 2 (cm)
+        <input type="number" id="l2" placeholder="misal 305" value="305" />
+    </label>
+
+    <div class="group-label">Desain Warna:</div>
+    <div class="radio-group">
+        <label><input type="radio" name="warnaMode" value="satu" checked /> Satu Warna</label>
+        <label><input type="radio" name="warnaMode" value="dua" /> Dua Warna (Border + Field)</label>
+    </div>
+
+    <div id="duaWarnaOptions" style="display: none;">
+        <label>Lebar Border (cm)
+            <input type="number" id="borderWidth" placeholder="30" value="30" />
+        </label>
+
+        <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 10px; margin-top: 10px;">
+            <div>
+                <label>Warna Border:</label>
+                <select id="warnaBorder">
+                    <option value="#000000">Hitam</option>
+                    <option value="#8B4513">Coklat</option>
+                    <option value="#808080">Abu-abu</option>
+                    <option value="#2F4F4F">Dark Slate</option>
+                    <option value="#36454F">Charcoal</option>
+                </select>
+            </div>
+            <div>
+                <label>Warna Field:</label>
+                <select id="warnaField">
+                    <option value="#FFFFFF" selected>Putih</option>
+                    <option value="#F5F5DC">Cream</option>
+                    <option value="#F0F0F0">Light Grey</option>
+                    <option value="#FFF8DC">Corn Silk</option>
+                    <option value="#FFFAF0">Floral White</option>
+                </select>
+            </div>
+        </div>
+
+        <div class="color-preview">
+            <div class="border-preview" id="borderPreview"></div>
+            <div class="field-preview" id="fieldPreview"></div>
+        </div>
+    </div>
+
+    <div class="group-label">Paket rangka:</div>
+    <select id="paket">
+        <option value="standar" selected>Standar (60 × 80 cm)</option>
+        <option value="ekonomis">Ekonomis (utama sama, pengikat lebih jarang)</option>
+        <option value="premium">Premium (lebih rapat)</option>
+    </select>
+
+    <div class="group-label">Panjang PVC per lembar:</div>
+    <div class="radio-group">
+        <label><input type="radio" name="pvcLength" value="4" checked /> 4 m</label>
+        <label><input type="radio" name="pvcLength" value="5" /> 5 m</label>
+        <label><input type="radio" name="pvcLength" value="6" /> 6 m</label>
+    </div>
+
+    <div class="group-label">Lebar PVC:</div>
+    <div class="radio-group">
+        <label><input type="radio" name="pvcWidth" value="0.20" checked /> 20 cm</label>
+        <label><input type="radio" name="pvcWidth" value="0.25" /> 25 cm</label>
+        <label><input type="radio" name="pvcWidth" value="0.30" /> 30 cm</label>
+    </div>
+
+    <div class="group-label">Panjang Lis PVC per batang:</div>
+    <div class="radio-group">
+        <label><input type="radio" name="lisLength" value="2" /> 2 m</label>
+        <label><input type="radio" name="lisLength" value="3" /> 3 m</label>
+        <label><input type="radio" name="lisLength" value="4" checked /> 4 m (default)</label>
+        <label><input type="radio" name="lisLength" value="5" /> 5 m</label>
+        <label><input type="radio" name="lisLength" value="6" /> 6 m</label>
+    </div>
+
+    <div class="group-label">Arah jalur / serat PVC:</div>
+    <div class="radio-group">
+        <label><input type="radio" name="orient" value="auto" checked /> Auto (paling irit lembar)</label>
+        <label><input type="radio" name="orient" value="P" /> Searah panjang ruangan (P)</label>
+        <label><input type="radio" name="orient" value="L" /> Searah lebar ruangan (L)</label>
+    </div>
+
+    <button onclick="hitungPlafon()">Hitung Kebutuhan Tukang</button>
+
+    <div id="result" class="result" style="display:none;"></div>
+
+    <h2>Visualisasi Desain Plafon</h2>
+    <small>Preview desain warna plafon Anda</small>
+    <div id="canvasRangka">
+        <div style="text-align: center; color: #666; padding: 40px;">
+            Hasil visualisasi akan muncul di sini setelah menghitung
+        </div>
+    </div>
+
+    <script>
+        // Event listener untuk toggle 2 warna
+        document.querySelectorAll('input[name="warnaMode"]').forEach(radio => {
+            radio.addEventListener('change', function () {
+                document.getElementById('duaWarnaOptions').style.display =
+                    this.value === 'dua' ? 'block' : 'none';
+                updateColorPreview();
+            });
+        });
+
+        // Event listener untuk update preview warna
+        document.getElementById('warnaBorder').addEventListener('change', updateColorPreview);
+        document.getElementById('warnaField').addEventListener('change', updateColorPreview);
+
+        function updateColorPreview() {
+            const borderColor = document.getElementById('warnaBorder').value;
+            const fieldColor = document.getElementById('warnaField').value;
+
+            document.getElementById('borderPreview').style.borderColor = borderColor;
+            document.getElementById('fieldPreview').style.background = fieldColor;
+        }
+
+        // Initialize preview
+        updateColorPreview();
+
+        function hitungPlafon() {
+            const p1 = parseFloat(document.getElementById('p1').value || 0);
+            const p2 = parseFloat(document.getElementById('p2').value || 0);
+            const l1 = parseFloat(document.getElementById('l1').value || 0);
+            const l2 = parseFloat(document.getElementById('l2').value || 0);
+
+            if (!p1 || !p2 || !l1 || !l2) {
+                alert('Semua ukuran (P1, P2, L1, L2) harus diisi.');
+                return;
+            }
+
+            // Cek mode warna
+            const warnaMode = document.querySelector('input[name="warnaMode"]:checked').value;
+            const isDuaWarna = warnaMode === 'dua';
+            const borderWidth = isDuaWarna ? parseFloat(document.getElementById('borderWidth').value || 30) / 100 : 0;
+
+            // pilihan
+            const PVC_PANJANG = parseFloat(document.querySelector('input[name="pvcLength"]:checked').value); // m
+            const PVC_LEBAR = parseFloat(document.querySelector('input[name="pvcWidth"]:checked').value);  // m
+            const LIS_PANJANG = parseFloat(document.querySelector('input[name="lisLength"]:checked').value); // m
+            const orientChoice = document.querySelector('input[name="orient"]:checked').value;
+            const paket = document.getElementById('paket').value;
+
+            // ukuran ruangan (m) – pakai sisi terbesar tiap arah
+            const P = Math.max(p1, p2) / 100.0;
+            const L = Math.max(l1, l2) / 100.0;
+
+            // parameter paket (pakai param yang kamu kirim)
+            let S_MAIN, S_SEC, screwFactor;
+            if (paket === 'ekonomis') {
+                S_MAIN = 0.60;   // rangka utama sama
+                S_SEC = 1.00;   // pengikat lebih jarang
+                screwFactor = 1.10;
+            } else if (paket === 'premium') {
+                S_MAIN = 0.50;   // lebih rapat
+                S_SEC = 0.70;
+                screwFactor = 1.30;
+            } else {
+                // standar
+                S_MAIN = 0.60;
+                S_SEC = 0.80;
+                screwFactor = 1.20;
+            }
+
+            const HOLLOW_PANJANG = 4.0;  // hollow 4 m
+            const S_HANGER = 0.80;       // jarak gantungan searah PVC
+            const COVER_SILICON = 8.0;   // 1 tube untuk ~8 m keliling
+
+            // helper: hitung kebutuhan PVC untuk orientasi tertentu
+            // run = panjang strip (arah PVC), across = lebar ruangan melintang strip
+            function hitungOrientasi(run, across) {
+                const nStrip = Math.ceil(across / PVC_LEBAR); // berapa strip/jalur PVC
+
+                let nPvc;
+                if (run <= PVC_PANJANG) {
+                    // Satu lembar bisa dipotong jadi beberapa strip sama panjang
+                    const stripPerLembar = Math.floor(PVC_PANJANG / run);
+                    const efektif = Math.max(stripPerLembar, 1);
+                    nPvc = Math.ceil(nStrip / efektif);
+                } else {
+                    // Panjang strip lebih dari panjang lembar PVC → per strip butuh beberapa lembar
+                    const lembarPerStrip = Math.ceil(run / PVC_PANJANG);
+                    nPvc = nStrip * lembarPerStrip;
+                }
+
+                return { nPvc, run, across, nStrip };
+            }
+
+            // PERHITUNGAN KHUSUS UNTUK 2 WARNA
+            let nPvcBorder = 0;
+            let nPvcField = 0;
+            let orientBorder, orientField;
+            let fieldP = P, fieldL = L;
+
+            if (isDuaWarna) {
+                // Hitung untuk BORDER (frame sekeliling)
+                const borderRun = P;  // panjang border searah ruangan
+                const borderAcross = L; // lebar border searah ruangan
+
+                // Border butuh strip khusus mengelilingi
+                // Atas + Bawah: panjang ruangan × 2
+                // Kiri + Kanan: (lebar ruangan - 2×border) × 2
+                const totalBorderLength = (2 * P) + (2 * (L - 2 * borderWidth));
+                const nStripBorder = Math.ceil(totalBorderLength / PVC_LEBAR);
+
+                // Hitung kebutuhan PVC untuk border
+                if (borderWidth <= PVC_PANJANG) {
+                    const stripPerLembar = Math.floor(PVC_PANJANG / borderWidth);
+                    const efektif = Math.max(stripPerLembar, 1);
+                    nPvcBorder = Math.ceil(nStripBorder / efektif);
+                } else {
+                    const lembarPerStrip = Math.ceil(borderWidth / PVC_PANJANG);
+                    nPvcBorder = nStripBorder * lembarPerStrip;
+                }
+
+                // Hitung untuk FIELD (area tengah)
+                fieldP = P - 2 * borderWidth;
+                fieldL = L - 2 * borderWidth;
+
+                if (fieldP > 0 && fieldL > 0) {
+                    const oriPField = hitungOrientasi(fieldP, fieldL);
+                    const oriLField = hitungOrientasi(fieldL, fieldP);
+
+                    if (orientChoice === 'P') {
+                        orientField = oriPField;
+                    } else if (orientChoice === 'L') {
+                        orientField = oriLField;
+                    } else {
+                        orientField = (oriLField.nPvc < oriPField.nPvc) ? oriLField : oriPField;
+                    }
+                    nPvcField = orientField.nPvc;
+                }
+            } else {
+                // Hitung normal untuk 1 warna
+                const oriP = hitungOrientasi(P, L);
+                const oriL = hitungOrientasi(L, P);
+
+                let orient;
+                if (orientChoice === 'P') {
+                    orient = oriP;
+                } else if (orientChoice === 'L') {
+                    orient = oriL;
+                } else {
+                    orient = (oriL.nPvc < oriP.nPvc) ? oriL : oriP;
+                }
+                nPvcField = orient.nPvc;
+                orientField = orient;
+            }
+
+            const sisiPVC = orientField ? orientField.run : P;
+            const sisiSilang = orientField ? orientField.across : L;
+
+            // Hollow utama (bawah, melintang PVC)
+            const nMain = Math.floor(sisiPVC / S_MAIN) + 1;
+            const totalMainM = nMain * sisiSilang;
+            const hollowMain = Math.ceil(totalMainM / HOLLOW_PANJANG);
+
+            // Hollow pengikat (atas, searah PVC)
+            const nSec = Math.floor(sisiSilang / S_SEC) + 1;
+            const totalSecM = nSec * sisiPVC;
+            const hollowSec = Math.ceil(totalSecM / HOLLOW_PANJANG);
+
+            // Keliling, lis, silikon, hollow pinggir
+            const keliling = 2 * (P + L);
+
+            // PERHITUNGAN LIS BARU - 2 JENIS LIS
+            let lisTembokBatang = 0;
+            let lisTransisiBatang = 0;
+            let lisTotalBatang = 0;
+            let lisInfoHTML = '';
+
+            if (isDuaWarna) {
+                // Lis Tembok (keliling ruangan penuh)
+                const panjangLisTembok = keliling;
+                lisTembokBatang = Math.ceil(panjangLisTembok / LIS_PANJANG);
+
+                // Lis Transisi (keliling field bagian dalam)
+                const panjangLisTransisi = 2 * (fieldP + fieldL);
+                lisTransisiBatang = Math.ceil(panjangLisTransisi / LIS_PANJANG);
+
+                lisTotalBatang = lisTembokBatang + lisTransisiBatang;
+
+                lisInfoHTML = `
+                    <div class="lis-info">
+                        <b>Detail Lis:</b><br/>
+                        • Lis Tembok (plafon-dinding): ${lisTembokBatang} batang<br/>
+                        • Lis Transisi (border-field): ${lisTransisiBatang} batang<br/>
+                        • <b>Total Lis:</b> ${lisTotalBatang} batang
+                    </div>
+                `;
+            } else {
+                // Satu warna - hanya lis tembok
+                lisTembokBatang = Math.ceil(keliling / LIS_PANJANG);
+                lisTotalBatang = lisTembokBatang;
+
+                lisInfoHTML = `
+                    <div class="lis-info">
+                        <b>Detail Lis:</b><br/>
+                        • Lis Tembok (plafon-dinding): ${lisTembokBatang} batang<br/>
+                        • <b>Total Lis:</b> ${lisTotalBatang} batang
+                    </div>
+                `;
+            }
+
+            const tubeSilicon = Math.ceil(keliling / COVER_SILICON);
+
+            const hollowPinggir = Math.ceil(keliling / HOLLOW_PANJANG);
+
+            const hollowTotal = hollowMain + hollowSec + hollowPinggir;
+
+            // Sekrup (kasar + faktor paket)
+            const totalPvcLembar = nPvcBorder + nPvcField;
+            const screwPvc = 2 * totalPvcLembar * nMain;
+            const screwHollow = nMain * nSec;
+            const hangerPerLine = Math.floor(sisiPVC / S_HANGER) + 1;
+            const totalHanger = nSec * hangerPerLine;
+            const screwHanger = 2 * totalHanger;
+            const screwTotal = Math.ceil((screwPvc + screwHollow + screwHanger) * screwFactor);
+
+            const luas = (P * L).toFixed(2);
+
+            // info arah PVC yang kepakai
+            let arahText;
+            if (orientField) {
+                if (Math.abs(orientField.run - P) < 1e-6 && Math.abs(orientField.across - L) < 1e-6) {
+                    arahText = 'Searah panjang ruangan (P)';
+                } else if (Math.abs(orientField.run - L) < 1e-6 && Math.abs(orientField.across - P) < 1e-6) {
+                    arahText = 'Searah lebar ruangan (L)';
+                } else {
+                    arahText = 'Auto (paling irit)';
+                }
+            } else {
+                arahText = 'Searah panjang ruangan (P)';
+            }
+
+            let paketText;
+            if (paket === 'ekonomis') paketText = 'Ekonomis (utama sama, pengikat lebih jarang)';
+            else if (paket === 'premium') paketText = 'Premium (rangka lebih rapat)';
+            else paketText = 'Standar (60 × 80 cm)';
+
+            const resEl = document.getElementById('result');
+            resEl.style.display = 'block';
+
+            let materialHTML = '';
+            if (isDuaWarna) {
+                const warnaBorder = document.getElementById('warnaBorder').options[document.getElementById('warnaBorder').selectedIndex].text;
+                const warnaField = document.getElementById('warnaField').options[document.getElementById('warnaField').selectedIndex].text;
+
+                materialHTML = `
+                    <b>PVC ${warnaBorder} (Border ${borderWidth * 100}cm):</b> ${nPvcBorder} lembar<br/>
+                    <b>PVC ${warnaField} (Field):</b> ${nPvcField} lembar<br/>
+                    <b>Total PVC:</b> ${nPvcBorder + nPvcField} lembar<br/>
+                `;
+            } else {
+                materialHTML = `<b>PVC ${PVC_PANJANG}m × ${(PVC_LEBAR * 100).toFixed(0)}cm:</b> ${nPvcField} lembar<br/>`;
+            }
+
+            resEl.innerHTML = `
+                <b>Luas plafon:</b> ${luas} m²<br/>
+                <b>Paket:</b> ${paketText}<br/>
+                <b>Arah jalur PVC:</b> ${arahText}<br/>
+                ${materialHTML}
+                <b>Hollow total 4m:</b> ${hollowTotal} batang 
+                <span style="font-size:12px;">
+                (utama: ${hollowMain}, pengikat: ${hollowSec}, pinggir: ${hollowPinggir})
+                </span><br/>
+                <b>Lis PVC ${LIS_PANJANG}m:</b> ${lisTotalBatang} batang
+                ${lisInfoHTML}
+                <b>Sekrup:</b> ± ${screwTotal} biji<br/>
+                <b>Silent / silikon:</b> ${tubeSilicon} tube
+                <div class="warning">
+                Hitungan sudah mempertimbangkan sisa potongan PVC (jika panjang strip ≤ panjang lembar),
+                parameter paket rangka, dan cadangan sekrup. Tetap cek lapangan untuk bentuk ruangan tidak siku.
+                </div>
+            `;
+
+            // gambar visualisasi clean untuk customer
+            drawVisualisasiClean(P, L, isDuaWarna, borderWidth);
+        }
+
+        function drawVisualisasiClean(P, L, isDuaWarna = false, borderWidth = 0) {
+            const container = document.getElementById("canvasRangka");
+            container.innerHTML = "";
+
+            const width = 400;
+            const height = 300;
+            const padding = 40;
+
+            const svgNS = "http://www.w3.org/2000/svg";
+            const svg = document.createElementNS(svgNS, "svg");
+            svg.setAttribute("viewBox", `0 0 ${width} ${height}`);
+            svg.setAttribute("preserveAspectRatio", "xMidYMid meet");
+
+            // Hitung scale agar proporsional
+            const scale = Math.min(
+                (width - 2 * padding) / P,
+                (height - 2 * padding) / L
+            );
+
+            const roomW = P * scale;
+            const roomH = L * scale;
+
+            // Center the room
+            const x0 = (width - roomW) / 2;
+            const y0 = (height - roomH) / 2;
+
+            if (isDuaWarna && borderWidth > 0) {
+                const borderSize = borderWidth * scale;
+                const borderColor = document.getElementById('warnaBorder').value;
+                const fieldColor = document.getElementById('warnaField').value;
+
+                // Border area
+                const borderRect = document.createElementNS(svgNS, "rect");
+                borderRect.setAttribute("x", x0);
+                borderRect.setAttribute("y", y0);
+                borderRect.setAttribute("width", roomW);
+                borderRect.setAttribute("height", roomH);
+                borderRect.setAttribute("fill", borderColor);
+                borderRect.setAttribute("rx", "8");
+                borderRect.setAttribute("ry", "8");
+                svg.appendChild(borderRect);
+
+                // Field area
+                const fieldRect = document.createElementNS(svgNS, "rect");
+                fieldRect.setAttribute("x", x0 + borderSize);
+                fieldRect.setAttribute("y", y0 + borderSize);
+                fieldRect.setAttribute("width", roomW - 2 * borderSize);
+                fieldRect.setAttribute("height", roomH - 2 * borderSize);
+                fieldRect.setAttribute("fill", fieldColor);
+                fieldRect.setAttribute("rx", "4");
+                fieldRect.setAttribute("ry", "4");
+                svg.appendChild(fieldRect);
+
+                // Visualisasi Lis Tembok (sekitar luar)
+                const lisTembok = document.createElementNS(svgNS, "rect");
+                lisTembok.setAttribute("x", x0 - 3);
+                lisTembok.setAttribute("y", y0 - 3);
+                lisTembok.setAttribute("width", roomW + 6);
+                lisTembok.setAttribute("height", roomH + 6);
+                lisTembok.setAttribute("fill", "none");
+                lisTembok.setAttribute("stroke", "#0d6efd");
+                lisTembok.setAttribute("stroke-width", "2");
+                lisTembok.setAttribute("stroke-dasharray", "5,3");
+                lisTembok.setAttribute("rx", "10");
+                lisTembok.setAttribute("ry", "10");
+                svg.appendChild(lisTembok);
+
+                // Visualisasi Lis Transisi (sekitar field)
+                const lisTransisi = document.createElementNS(svgNS, "rect");
+                lisTransisi.setAttribute("x", x0 + borderSize - 2);
+                lisTransisi.setAttribute("y", y0 + borderSize - 2);
+                lisTransisi.setAttribute("width", roomW - 2 * borderSize + 4);
+                lisTransisi.setAttribute("height", roomH - 2 * borderSize + 4);
+                lisTransisi.setAttribute("fill", "none");
+                lisTransisi.setAttribute("stroke", "#dc3545");
+                lisTransisi.setAttribute("stroke-width", "2");
+                lisTransisi.setAttribute("stroke-dasharray", "3,2");
+                lisTransisi.setAttribute("rx", "6");
+                lisTransisi.setAttribute("ry", "6");
+                svg.appendChild(lisTransisi);
+
+                // Labels
+                const borderLabel = document.createElementNS(svgNS, "text");
+                borderLabel.setAttribute("x", width / 2);
+                borderLabel.setAttribute("y", y0 - 10);
+                borderLabel.setAttribute("text-anchor", "middle");
+                borderLabel.setAttribute("font-size", "12");
+                borderLabel.setAttribute("font-weight", "bold");
+                borderLabel.setAttribute("fill", borderColor);
+                borderLabel.textContent = `BORDER ${borderWidth * 100}cm`;
+                svg.appendChild(borderLabel);
+
+                const fieldLabel = document.createElementNS(svgNS, "text");
+                fieldLabel.setAttribute("x", width / 2);
+                fieldLabel.setAttribute("y", y0 + roomH / 2);
+                fieldLabel.setAttribute("text-anchor", "middle");
+                fieldLabel.setAttribute("font-size", "14");
+                fieldLabel.setAttribute("font-weight", "bold");
+                fieldLabel.setAttribute("fill", "#333");
+                fieldLabel.textContent = "FIELD";
+                svg.appendChild(fieldLabel);
+
+                // Size labels
+                const sizeLabel = document.createElementNS(svgNS, "text");
+                sizeLabel.setAttribute("x", width / 2);
+                sizeLabel.setAttribute("y", height - 5);
+                sizeLabel.setAttribute("text-anchor", "middle");
+                sizeLabel.setAttribute("font-size", "11");
+                sizeLabel.setAttribute("fill", "#666");
+                sizeLabel.textContent = `Ukuran: ${P.toFixed(2)}m × ${L.toFixed(2)}m`;
+                svg.appendChild(sizeLabel);
+
+                // Color info
+                const visualInfo = document.createElement("div");
+                visualInfo.className = "visual-info";
+                visualInfo.innerHTML = `
+                    <div class="color-badge">
+                        <div class="color-swatch" style="background: ${borderColor}"></div>
+                        <span><b>Border:</b> ${document.getElementById('warnaBorder').options[document.getElementById('warnaBorder').selectedIndex].text}</span>
+                    </div>
+                    <div class="color-badge">
+                        <div class="color-swatch" style="background: ${fieldColor}"></div>
+                        <span><b>Field:</b> ${document.getElementById('warnaField').options[document.getElementById('warnaField').selectedIndex].text}</span>
+                    </div>
+                `;
+
+                // Legend
+                const legend = document.createElement("div");
+                legend.className = "legend";
+                legend.innerHTML = `
+                    <div class="legend-item">
+                        <div class="legend-color" style="background: #0d6efd"></div>
+                        <span>Lis Tembok</span>
+                    </div>
+                    <div class="legend-item">
+                        <div class="legend-color" style="background: #dc3545"></div>
+                        <span>Lis Transisi</span>
+                    </div>
+                `;
+
+                container.appendChild(svg);
+                container.appendChild(visualInfo);
+                container.appendChild(legend);
+
+            } else {
+                // Single color design
+                const pvcColor = "#e9ecef";
+
+                const roomRect = document.createElementNS(svgNS, "rect");
+                roomRect.setAttribute("x", x0);
+                roomRect.setAttribute("y", y0);
+                roomRect.setAttribute("width", roomW);
+                roomRect.setAttribute("height", roomH);
+                roomRect.setAttribute("fill", pvcColor);
+                roomRect.setAttribute("rx", "8");
+                roomRect.setAttribute("ry", "8");
+                roomRect.setAttribute("stroke", "#adb5bd");
+                roomRect.setAttribute("stroke-width", "2");
+                svg.appendChild(roomRect);
+
+                // Visualisasi Lis Tembok
+                const lisTembok = document.createElementNS(svgNS, "rect");
+                lisTembok.setAttribute("x", x0 - 3);
+                lisTembok.setAttribute("y", y0 - 3);
+                lisTembok.setAttribute("width", roomW + 6);
+                lisTembok.setAttribute("height", roomH + 6);
+                lisTembok.setAttribute("fill", "none");
+                lisTembok.setAttribute("stroke", "#0d6efd");
+                lisTembok.setAttribute("stroke-width", "2");
+                lisTembok.setAttribute("stroke-dasharray", "5,3");
+                lisTembok.setAttribute("rx", "10");
+                lisTembok.setAttribute("ry", "10");
+                svg.appendChild(lisTembok);
+
+                // Title
+                const title = document.createElementNS(svgNS, "text");
+                title.setAttribute("x", width / 2);
+                title.setAttribute("y", y0 + roomH / 2);
+                title.setAttribute("text-anchor", "middle");
+                title.setAttribute("font-size", "16");
+                title.setAttribute("font-weight", "bold");
+                title.setAttribute("fill", "#495057");
+                title.textContent = "PLAFON PVC";
+                svg.appendChild(title);
+
+                // Size
+                const sizeLabel = document.createElementNS(svgNS, "text");
+                sizeLabel.setAttribute("x", width / 2);
+                sizeLabel.setAttribute("y", y0 + roomH / 2 + 20);
+                sizeLabel.setAttribute("text-anchor", "middle");
+                sizeLabel.setAttribute("font-size", "12");
+                sizeLabel.setAttribute("fill", "#6c757d");
+                sizeLabel.textContent = `${P.toFixed(2)}m × ${L.toFixed(2)}m`;
+                svg.appendChild(sizeLabel);
+
+                // Single color info
+                const visualInfo = document.createElement("div");
+                visualInfo.className = "visual-info";
+                visualInfo.innerHTML = `
+                    <div class="color-badge">
+                        <div class="color-swatch" style="background: ${pvcColor}"></div>
+                        <span><b>Warna:</b> Putih Standar</span>
+                    </div>
+                    <div></div>
+                `;
+
+                // Legend
+                const legend = document.createElement("div");
+                legend.className = "legend";
+                legend.innerHTML = `
+                    <div class="legend-item">
+                        <div class="legend-color" style="background: #0d6efd"></div>
+                        <span>Lis Tembok</span>
+                    </div>
+                `;
+
+                container.appendChild(svg);
+                container.appendChild(visualInfo);
+                container.appendChild(legend);
+            }
+        }
+    </script>
+
+    <script>
+        // Password protection - tambahkan di awal <body>
+        const PASSWORDS = ["tukang2025"];
+        let attempts = 0;
+        const maxAttempts = 3;
+
+        function checkPassword() {
+            const input = prompt("🔐 MASUKKAN KODE AKSES:");
+
+            if (PASSWORDS.includes(input)) {
+                return true; // Password benar
+            } else {
+                attempts++;
+                if (attempts < maxAttempts) {
+                    alert(`Kode salah! Percobaan ${attempts}/${maxAttempts}`);
+                    return checkPassword(); // Coba lagi
+                } else {
+                    alert("Akses ditolak! Hubungi admin.");
+                    return false;
+                }
+            }
+        }
+
+        if (!checkPassword()) {
+            document.body.innerHTML = `
+        <div style="text-align:center; padding:50px; font-family:Arial;">
+            <h1>⛔ AKSES DITOLAK</h1>
+            <p>Anda tidak memiliki akses ke halaman ini.</p>
+            <p><small>Hubungi administrator untuk mendapatkan kode akses.</small></p>
+        </div>
+    `;
+        }
+    </script>
+</body>
+
+</html>
