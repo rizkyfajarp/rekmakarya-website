@@ -1001,23 +1001,33 @@
         // HARGA MATERIAL (Realistis 2024)
         const HARGA = {
             // PVC
-            pvc: {
-                '4': { '0.20': 38000, '0.25': 42000, '0.30': 48000 },
-                '5': { '0.20': 45000, '0.25': 50000, '0.30': 55000 },
-                '6': { '0.20': 52000, '0.25': 58000, '0.30': 63000 }
+            pvc std: {
+                '3': { '0.20': 36000 },
+                '4': { '0.20': 48000 },
+                '5': { '0.20': 60000 },
+                '6': { '0.20': 72000 }
+            },
+
+            pvc sni: {
+                '3': { '0.20': 45000 },
+                '4': { '0.20': 60000 },
+                '5': { '0.20': 75000 },
+                '6': { '0.20': 90000 }
             },
 
             // Rangka
-            hollow: 22000,
+            hollow std: 13000,
+            hollow sni: 22000,
             lis: {
-                dinding: 6000,
-                transisi: 8000
+                dinding: 50000,
+                transisi: 50000,
+                tutup: 50000,
             },
 
             // Penerangan
             downlight: {
-                '9': 45000,
-                '12': 55000,
+                '9': 35000,
+                '12': 40000,
                 '15': 65000,
                 '18': 75000
             },
@@ -1028,16 +1038,16 @@
             },
             driverLED: 80000,
             lampuGantung: {
-                'klasik': 150000,
-                'modern': 200000,
-                'minimalis': 120000
+                'klasik': 500000,
+                'modern': 500000,
+                'minimalis': 50000
             },
 
             // Listrik
-            stopKontak: 25000,
-            saklar: 20000,
+            stopKontak: 35000,
+            saklar: 35000,
             kabelNym15: 12000,
-            pipaConduit: 9000,
+            pipaConduit: 5000,
             boxSaklar: 12000,
             boxStopKontak: 15000,
 
@@ -2071,3 +2081,4 @@
 </body>
 
 </html>
+
