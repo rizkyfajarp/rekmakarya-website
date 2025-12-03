@@ -3,8 +3,9 @@
 
 <head>
     <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="robots" content="noindex, nofollow, noarchive">
-    <title>KALKULATOR PLAFON PVC PROYEK - READY</title>
+    <title>KALKULATOR PLAFON PVC - DETAIL PER BAGIAN</title>
     <style>
         :root {
             --primary: #2c3e50;
@@ -45,7 +46,7 @@
         .header h1 {
             color: var(--primary);
             margin-bottom: 10px;
-            font-size: 32px;
+            font-size: 28px;
         }
 
         .header .subtitle {
@@ -135,18 +136,16 @@
             box-shadow: 0 0 0 3px rgba(52, 152, 219, 0.1);
         }
 
-        .radio-group,
-        .checkbox-group {
+        .radio-group {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
-            gap: 10px;
+            grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+            gap: 8px;
             margin: 10px 0;
         }
 
-        .radio-group label,
-        .checkbox-group label {
+        .radio-group label {
             background: var(--light);
-            padding: 12px 15px;
+            padding: 10px 12px;
             border: 2px solid #e1e8ed;
             border-radius: 8px;
             cursor: pointer;
@@ -154,25 +153,22 @@
             font-weight: normal;
             margin: 0;
             text-align: center;
-            font-size: 14px;
+            font-size: 13px;
         }
 
-        .radio-group label:hover,
-        .checkbox-group label:hover {
+        .radio-group label:hover {
             border-color: var(--secondary);
             background: #e1f0fa;
         }
 
-        .radio-group input[type="radio"]:checked+label,
-        .checkbox-group input[type="checkbox"]:checked+label {
+        .radio-group input[type="radio"]:checked + label {
             border-color: var(--secondary);
             background: #e1f0fa;
             font-weight: 600;
             color: var(--secondary);
         }
 
-        .radio-group input[type="radio"],
-        .checkbox-group input[type="checkbox"] {
+        .radio-group input[type="radio"] {
             display: none;
         }
 
@@ -181,16 +177,6 @@
             grid-template-columns: 1fr 1fr;
             gap: 15px;
             margin: 10px 0;
-        }
-
-        .color-swatch {
-            display: inline-block;
-            width: 20px;
-            height: 20px;
-            border-radius: 4px;
-            margin-right: 8px;
-            vertical-align: middle;
-            border: 1px solid #ddd;
         }
 
         .btn-calculate {
@@ -277,6 +263,22 @@
             color: var(--primary);
         }
 
+        .bagian-detail {
+            background: white;
+            padding: 15px;
+            border-radius: 8px;
+            border: 1px solid #e1e8ed;
+            margin: 10px 0;
+        }
+
+        .bagian-title {
+            font-weight: 600;
+            color: var(--primary);
+            margin-bottom: 10px;
+            padding-bottom: 5px;
+            border-bottom: 2px solid var(--light);
+        }
+
         .cost-summary {
             background: linear-gradient(135deg, var(--success), #219653);
             color: white;
@@ -290,51 +292,6 @@
             font-size: 36px;
             font-weight: 700;
             margin: 10px 0;
-        }
-
-        .cost-breakdown {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-            gap: 15px;
-            margin-top: 20px;
-        }
-
-        .breakdown-item {
-            background: rgba(255, 255, 255, 0.1);
-            padding: 15px;
-            border-radius: 8px;
-            text-align: left;
-        }
-
-        .warning-box {
-            background: #fff3cd;
-            border: 1px solid #ffeaa7;
-            color: #856404;
-            padding: 15px;
-            border-radius: 8px;
-            margin: 15px 0;
-            font-size: 14px;
-        }
-
-        .visualization-box {
-            background: white;
-            padding: 25px;
-            border-radius: 12px;
-            margin: 25px 0;
-            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.08);
-            border: 2px dashed #bdc3c7;
-        }
-
-        .color-palette {
-            display: flex;
-            gap: 15px;
-            margin: 15px 0;
-        }
-
-        .color-item {
-            display: flex;
-            align-items: center;
-            gap: 8px;
         }
 
         .tab-container {
@@ -373,51 +330,12 @@
             display: block;
         }
 
-        .dimension-inputs {
-            display: grid;
-            grid-template-columns: repeat(2, 1fr);
-            gap: 20px;
+        .hollow-tambahan-box {
+            background: #fff8e1;
+            border: 1px solid #ffd54f;
+            border-radius: 8px;
+            padding: 15px;
             margin: 15px 0;
-        }
-
-        .dimension-group {
-            background: #f8f9fa;
-            padding: 20px;
-            border-radius: 10px;
-            border: 1px solid #e1e8ed;
-        }
-
-        .dimension-group h4 {
-            margin-bottom: 15px;
-            color: var(--primary);
-            font-size: 16px;
-            display: flex;
-            align-items: center;
-            gap: 8px;
-        }
-
-        .info-icon {
-            display: inline-block;
-            width: 20px;
-            height: 20px;
-            background: var(--secondary);
-            color: white;
-            border-radius: 50%;
-            text-align: center;
-            line-height: 20px;
-            font-size: 12px;
-            cursor: help;
-        }
-
-        .toggle-options {
-            max-height: 0;
-            overflow: hidden;
-            transition: max-height 0.3s ease-out;
-        }
-
-        .toggle-options.show {
-            max-height: 500px;
-            margin-top: 15px;
         }
 
         .note-box {
@@ -429,16 +347,7 @@
             font-size: 14px;
         }
 
-        .auto-calc-result {
-            background: #e8f8ef;
-            border: 1px solid #a3e9c4;
-            border-radius: 6px;
-            padding: 10px;
-            margin: 10px 0;
-        }
-
         @media print {
-
             .btn-calculate,
             .tab-container {
                 display: none;
@@ -454,1598 +363,1002 @@
 
 <body>
     <div class="header">
-        <h1>🧮 KALKULATOR PLAFON PVC PROYEK</h1>
-        <p class="subtitle">Perhitungan Lengkap & Realistis untuk Proyek Konstruksi</p>
+        <h1>🧮 KALKULATOR PLAFON PVC - DETAIL PER BAGIAN</h1>
+        <p class="subtitle">Perhitungan terpisah untuk setiap bagian plafon (filed, drop, border)</p>
     </div>
 
     <div class="container">
         <!-- PANEL KIRI: INPUT DATA -->
         <div class="panel">
-            <h2>📐 DATA PROYEK</h2>
+            <h2>📐 DATA RUANGAN & PLAFON</h2>
 
             <div class="tab-container">
                 <button class="tab active" onclick="switchTab('ukuran')">Ukuran</button>
-                <button class="tab" onclick="switchTab('plafon')">Plafon</button>
-                <button class="tab" onclick="switchTab('penerangan')">Penerangan</button>
-                <button class="tab" onclick="switchTab('listrik')">Listrik</button>
+                <button class="tab" onclick="switchTab('model')">Model</button>
+                <button class="tab" onclick="switchTab('material')">Material</button>
             </div>
 
             <!-- TAB 1: UKURAN -->
             <div id="tab-ukuran" class="tab-content active">
                 <div class="section">
-                    <div class="section-title">📏 Ukuran Ruangan (meter)</div>
-
-                    <div class="dimension-inputs">
-                        <div class="dimension-group">
-                            <h4>Panjang Ruangan <span class="info-icon" title="Ukur kedua sisi ruangan">i</span></h4>
-                            <div class="input-row">
-                                <div>
-                                    <label>Sisi 1</label>
-                                    <input type="number" id="p1" placeholder="4.0" step="0.01" min="1" value="4.0"
-                                        oninput="updateAllCalculations()">
-                                </div>
-                                <div>
-                                    <label>Sisi 2</label>
-                                    <input type="number" id="p2" placeholder="4.0" step="0.01" min="1" value="4.0"
-                                        oninput="updateAllCalculations()">
-                                </div>
-                            </div>
+                    <div class="section-title">📏 UKURAN RUANGAN</div>
+                    <div class="input-row">
+                        <div>
+                            <label>Panjang (m)</label>
+                            <input type="number" id="panjang" placeholder="4.0" step="0.01" min="1" value="4.0" oninput="updateLuas()">
                         </div>
-
-                        <div class="dimension-group">
-                            <h4>Lebar Ruangan <span class="info-icon" title="Ukur kedua sisi ruangan">i</span></h4>
-                            <div class="input-row">
-                                <div>
-                                    <label>Sisi 1</label>
-                                    <input type="number" id="l1" placeholder="3.0" step="0.01" min="1" value="3.0"
-                                        oninput="updateAllCalculations()">
-                                </div>
-                                <div>
-                                    <label>Sisi 2</label>
-                                    <input type="number" id="l2" placeholder="3.0" step="0.01" min="1" value="3.0"
-                                        oninput="updateAllCalculations()">
-                                </div>
-                            </div>
+                        <div>
+                            <label>Lebar (m)</label>
+                            <input type="number" id="lebar" placeholder="3.0" step="0.01" min="1" value="3.0" oninput="updateLuas()">
                         </div>
                     </div>
+                    <div style="text-align: center; margin-top: 15px; padding: 15px; background: #f8f9fa; border-radius: 8px;">
+                        <div style="font-size: 18px; font-weight: bold; color: var(--primary);">Luas Ruangan</div>
+                        <div style="font-size: 24px; color: var(--danger); margin-top: 5px;" id="luasDisplay">12.00 m²</div>
+                    </div>
+                </div>
 
-                    <div class="dimension-inputs">
-                        <div class="dimension-group">
-                            <h4>Tinggi Ruangan</h4>
-                            <div class="input-row">
-                                <div>
-                                    <label>Tinggi 1</label>
-                                    <input type="number" id="t1" placeholder="3.0" step="0.01" min="2" value="3.0">
-                                </div>
-                                <div>
-                                    <label>Tinggi 2</label>
-                                    <input type="number" id="t2" placeholder="3.0" step="0.01" min="2" value="3.0">
-                                </div>
-                            </div>
+                <div class="hollow-tambahan-box">
+                    <div class="section-title">➕ HOLLOW TAMBAHAN</div>
+                    <div class="input-row">
+                        <div>
+                            <label>Jumlah Batang</label>
+                            <input type="number" id="tambahHollow" placeholder="0" min="0" max="50" value="0">
                         </div>
-
-                        <div class="dimension-group">
-                            <h4>Info Proyek</h4>
-                            <label>Nama Proyek</label>
-                            <input type="text" id="namaProyek" placeholder="Contoh: Plafon Kamar Utama"
-                                value="Proyek Plafon PVC">
-
-                            <label>Jenis Ruangan</label>
-                            <select id="jenisRuangan">
-                                <option value="kamar">Kamar Tidur</option>
-                                <option value="ruangtamu">Ruang Tamu</option>
-                                <option value="dapur">Dapur</option>
-                                <option value="kamarMandi">Kamar Mandi</option>
-                                <option value="kantor">Kantor</option>
-                                <option value="custom">Custom</option>
+                        <div>
+                            <label>Tipe Hollow</label>
+                            <select id="tipeHollowTambahan">
+                                <option value="4x2">4×2 cm</option>
+                                <option value="4x4">4×4 cm</option>
                             </select>
+                        </div>
+                    </div>
+                    <div style="font-size: 12px; color: #666; margin-top: 10px;">
+                        *Untuk gantungan plafon atau keperluan khusus di lapangan
+                    </div>
+                </div>
+            </div>
+
+            <!-- TAB 2: MODEL -->
+            <div id="tab-model" class="tab-content">
+                <div class="section">
+                    <div class="section-title">🎨 MODEL PLAFON</div>
+                    <div class="radio-group">
+                        <input type="radio" name="modelPlafon" id="flat" value="flat" checked onchange="updateModelSettings()">
+                        <label for="flat">Flat 1 Warna</label>
+                        
+                        <input type="radio" name="modelPlafon" id="flat2warna" value="flat2warna" onchange="updateModelSettings()">
+                        <label for="flat2warna">Flat 2 Warna</label>
+                        
+                        <input type="radio" name="modelPlafon" id="dropPinggir" value="dropPinggir" onchange="updateModelSettings()">
+                        <label for="dropPinggir">Drop Pinggir</label>
+                        
+                        <input type="radio" name="modelPlafon" id="dropTengah" value="dropTengah" onchange="updateModelSettings()">
+                        <label for="dropTengah">Drop Tengah</label>
+                        
+                        <input type="radio" name="modelPlafon" id="dropGabungan" value="dropGabungan" onchange="updateModelSettings()">
+                        <label for="dropGabungan">Drop Gabungan</label>
+                    </div>
+                </div>
+
+                <!-- SETTINGS FLAT 2 WARNA -->
+                <div id="settingsFlat2warna" class="section" style="display: none;">
+                    <div class="section-title">📏 SETTINGS FLAT 2 WARNA</div>
+                    <div class="input-row">
+                        <div>
+                            <label>Lebar Border (cm)</label>
+                            <input type="number" id="lebarBorder" placeholder="40" min="20" max="100" value="40" step="5">
+                        </div>
+                    </div>
+                </div>
+
+                <!-- SETTINGS DROP PINGGIR -->
+                <div id="settingsDropPinggir" class="section" style="display: none;">
+                    <div class="section-title">📏 SETTINGS DROP PINGGIR</div>
+                    <div class="input-row">
+                        <div>
+                            <label>Lebar Drop (cm)</label>
+                            <input type="number" id="lebarDropPinggir" placeholder="40" min="30" max="100" value="40" step="5">
+                        </div>
+                        <div>
+                            <label>Tinggi Turun (cm)</label>
+                            <input type="number" id="tinggiDropPinggir" placeholder="15" min="5" max="30" value="15" step="1">
+                        </div>
+                    </div>
+                </div>
+
+                <!-- SETTINGS DROP TENGAH -->
+                <div id="settingsDropTengah" class="section" style="display: none;">
+                    <div class="section-title">📏 SETTINGS DROP TENGAH</div>
+                    <div class="input-row">
+                        <div>
+                            <label>Jarak dari Dinding (cm)</label>
+                            <input type="number" id="jarakDropTengah" placeholder="50" min="30" max="200" value="50" step="5">
+                        </div>
+                        <div>
+                            <label>Lebar Filed Pinggir (cm)</label>
+                            <input type="number" id="lebarFiledDropTengah" placeholder="60" min="30" max="200" value="60" step="5">
+                        </div>
+                    </div>
+                    <div class="input-row">
+                        <div>
+                            <label>Tinggi Turun (cm)</label>
+                            <input type="number" id="tinggiDropTengah" placeholder="20" min="5" max="30" value="20" step="1">
+                        </div>
+                    </div>
+                </div>
+
+                <!-- SETTINGS DROP GABUNGAN -->
+                <div id="settingsDropGabungan" class="section" style="display: none;">
+                    <div class="section-title">📏 SETTINGS DROP GABUNGAN</div>
+                    <div class="input-row">
+                        <div>
+                            <label>Lebar Drop Pinggir (cm)</label>
+                            <input type="number" id="lebarDropGabPinggir" placeholder="30" min="20" max="80" value="30" step="5">
+                        </div>
+                        <div>
+                            <label>Tinggi Drop Pinggir (cm)</label>
+                            <input type="number" id="tinggiDropGabPinggir" placeholder="10" min="5" max="20" value="10" step="1">
+                        </div>
+                    </div>
+                    <div class="input-row">
+                        <div>
+                            <label>Lebar Filed (cm)</label>
+                            <input type="number" id="lebarFiledGabungan" placeholder="50" min="30" max="150" value="50" step="5">
+                        </div>
+                        <div>
+                            <label>Tinggi Drop Tengah (cm)</label>
+                            <input type="number" id="tinggiDropGabTengah" placeholder="20" min="10" max="30" value="20" step="1">
                         </div>
                     </div>
                 </div>
             </div>
 
-            <!-- TAB 2: PLAFON -->
-            <div id="tab-plafon" class="tab-content">
+            <!-- TAB 3: MATERIAL -->
+            <div id="tab-material" class="tab-content">
                 <div class="section">
-                    <div class="section-title">🏗️ Model & Warna</div>
-
-                    <label>Model Plafon:</label>
-                    <div class="radio-group">
-                        <input type="radio" name="modelPlafon" id="flat" value="flat" checked
-                            onchange="updateAllCalculations()">
-                        <label for="flat">Flat Standard</label>
-
-                        <input type="radio" name="modelPlafon" id="drop" value="drop" onchange="toggleDropOptions()">
-                        <label for="drop">Drop Ceiling</label>
-                    </div>
-
-                    <div id="dropOptions" class="toggle-options">
-                        <div class="input-row">
-                            <div>
-                                <label>Tinggi Turun (cm)</label>
-                                <input type="number" id="tinggiDrop" placeholder="15" value="15" min="5" max="50"
-                                    oninput="updateAllCalculations()">
-                            </div>
-                            <div>
-                                <label>Level Drop</label>
-                                <select id="levelDrop" onchange="updateAllCalculations()">
-                                    <option value="1">Single Level</option>
-                                    <option value="2">Multi Level</option>
-                                </select>
-                            </div>
-                        </div>
-                    </div>
-
-                    <label>Warna Plafon:</label>
-                    <div class="radio-group">
-                        <input type="radio" name="warnaPlafon" id="satuWarna" value="satu" checked
-                            onchange="toggleWarnaOptions()">
-                        <label for="satuWarna">Satu Warna</label>
-
-                        <input type="radio" name="warnaPlafon" id="duaWarna" value="dua"
-                            onchange="toggleWarnaOptions()">
-                        <label for="duaWarna">Dua Warna</label>
-                    </div>
-
-                    <div id="duaWarnaOptions" class="toggle-options">
-                        <div class="input-row">
-                            <div>
-                                <label>Lebar Border (cm)</label>
-                                <input type="number" id="lebarBorder" placeholder="30" value="30" min="10" max="100"
-                                    oninput="updateAllCalculations()">
-                            </div>
-                            <div>
-                                <label>Warna Border</label>
-                                <select id="warnaBorder" onchange="updatePreview()">
-                                    <option value="hitam">Hitam</option>
-                                    <option value="coklat">Coklat</option>
-                                    <option value="abu">Abu-abu</option>
-                                    <option value="navy">Navy Blue</option>
-                                </select>
-                            </div>
-                        </div>
-                        <div class="input-row">
-                            <div>
-                                <label>Warna Field</label>
-                                <select id="warnaField" onchange="updatePreview()">
-                                    <option value="putih">Putih</option>
-                                    <option value="cream">Cream</option>
-                                    <option value="lightgrey">Light Grey</option>
-                                </select>
-                            </div>
-                            <div>
-                                <label>Lis Transisi</label>
-                                <select id="lisTransisi">
-                                    <option value="standar">Standar (L)</option>
-                                    <option value="custom">Custom T</option>
-                                </select>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="section">
-                    <div class="section-title">🧱 Material PVC</div>
-
+                    <div class="section-title">🧱 MATERIAL PVC</div>
                     <div class="input-row">
                         <div>
                             <label>Panjang PVC</label>
-                            <select id="panjangPVC" onchange="updateAllCalculations()">
-                                <option value="4">4 meter</option>
+                            <select id="panjangPVC">
+                                <option value="3">3 meter</option>
+                                <option value="4" selected>4 meter</option>
                                 <option value="5">5 meter</option>
-                                <option value="6">6 meter</option>
                             </select>
                         </div>
                         <div>
                             <label>Lebar PVC</label>
-                            <select id="lebarPVC" onchange="updateAllCalculations()">
-                                <option value="0.20">20 cm</option>
+                            <select id="lebarPVC">
+                                <option value="0.20" selected>20 cm</option>
                                 <option value="0.25">25 cm</option>
                                 <option value="0.30">30 cm</option>
                             </select>
                         </div>
                     </div>
-
-                    <label>Arah Pemasangan PVC:</label>
-                    <div class="radio-group">
-                        <input type="radio" name="arahPVC" id="auto" value="auto" checked>
-                        <label for="auto">Auto (Irit)</label>
-
-                        <input type="radio" name="arahPVC" id="searahPanjang" value="panjang">
-                        <label for="searahPanjang">Searah Panjang</label>
-
-                        <input type="radio" name="arahPVC" id="searahLebar" value="lebar">
-                        <label for="searahLebar">Searah Lebar</label>
-                    </div>
-                </div>
-
-                <div class="section">
-                    <div class="section-title">🔩 Rangka & Aksesoris</div>
-
-                    <label>Paket Rangka Hollow:</label>
-                    <div class="radio-group">
-                        <input type="radio" name="paketRangka" id="standar" value="standar" checked
-                            onchange="updateAllCalculations()">
-                        <label for="standar">Standar (60×80cm)</label>
-
-                        <input type="radio" name="paketRangka" id="ekonomis" value="ekonomis"
-                            onchange="updateAllCalculations()">
-                        <label for="ekonomis">Ekonomis</label>
-
-                        <input type="radio" name="paketRangka" id="premium" value="premium"
-                            onchange="updateAllCalculations()">
-                        <label for="premium">Premium (50×60cm)</label>
-                    </div>
-
-                    <label>Sistem Gantungan:</label>
-                    <div class="radio-group">
-                        <input type="radio" name="gantungan" id="gantunganYa" value="ya" checked
-                            onchange="updateAllCalculations()">
-                        <label for="gantunganYa">Pakai Gantungan</label>
-
-                        <input type="radio" name="gantungan" id="gantunganTidak" value="tidak"
-                            onchange="updateAllCalculations()">
-                        <label for="gantunganTidak">Tanpa Gantungan</label>
-                    </div>
-
-                    <label>Aksesoris:</label>
-                    <div class="checkbox-group">
-                        <input type="checkbox" id="silikon" checked>
-                        <label for="silikon">Silikon</label>
-
-                        <input type="checkbox" id="sekrup" checked>
-                        <label for="sekrup">Sekrup Lengkap</label>
-
-                        <input type="checkbox" id="furing">
-                        <label for="furing">Furing Kayu</label>
-                    </div>
-                </div>
-            </div>
-
-            <!-- TAB 3: PENERANGAN -->
-            <div id="tab-penerangan" class="tab-content">
-                <div class="section">
-                    <div class="section-title">💡 Sistem Penerangan</div>
-
-                    <div class="checkbox-group">
-                        <input type="checkbox" id="downlight" checked onchange="toggleDownlightOptions()">
-                        <label for="downlight">Downlight LED</label>
-
-                        <input type="checkbox" id="ledStrip" onchange="toggleLEDOptions()">
-                        <label for="ledStrip">LED Strip</label>
-
-                        <input type="checkbox" id="lampuGantung" onchange="toggleLampuGantungOptions()">
-                        <label for="lampuGantung">Lampu Gantung</label>
-                    </div>
-
-                    <div id="downlightOptions" class="toggle-options">
-                        <div class="input-row">
-                            <div>
-                                <label>Jumlah Downlight</label>
-                                <input type="number" id="jumlahDownlight" placeholder="4" min="1" max="20" value="4"
-                                    oninput="updateAllCalculations()">
-                            </div>
-                            <div>
-                                <label>Watt per Downlight</label>
-                                <select id="wattDownlight" onchange="updateAllCalculations()">
-                                    <option value="9">9W</option>
-                                    <option value="12" selected>12W</option>
-                                    <option value="15">15W</option>
-                                    <option value="18">18W</option>
-                                </select>
-                            </div>
-                        </div>
-                        <div class="input-row">
-                            <div>
-                                <label>Warna Cahaya</label>
-                                <select id="warnaCahaya">
-                                    <option value="putih">Putih Dingin</option>
-                                    <option value="warm">Putih Hangat</option>
-                                    <option value="neutral">Putih Netral</option>
-                                </select>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div id="ledStripOptions" class="toggle-options">
-                        <div class="input-row">
-                            <div>
-                                <label>Tipe LED Strip</label>
-                                <select id="tipeLED" onchange="updateLEDCalculation()">
-                                    <option value="2835">2835 White</option>
-                                    <option value="5050">5050 RGB</option>
-                                    <option value="rgbw">RGB + White</option>
-                                </select>
-                            </div>
-                            <div>
-                                <label>Posisi Pemasangan</label>
-                                <select id="posisiLEDSelect" onchange="updateLEDCalculation()">
-                                    <option value="lisTengah">Lis Tengah Plafon</option>
-                                    <option value="coveDrop">Cove Lighting (Drop Ceiling)</option>
-                                    <option value="coveWall">Cove Lighting (Dinding)</option>
-                                    <option value="plafonLangsung">Sekeliling Plafon</option>
-                                </select>
-                            </div>
-                        </div>
-
-                        <!-- Info dinamis berdasarkan posisi -->
-                        <div id="ledInfoBox" class="note-box" style="margin: 10px 0;">
-                            <div id="ledInfoContent">
-                                Pilih posisi pemasangan untuk melihat kebutuhan LED Strip
-                            </div>
-                        </div>
-
-                        <!-- Input khusus untuk drop ceiling -->
-                        <div id="coveDropOptions" style="display: none;">
-                            <div class="input-row">
-                                <div>
-                                    <label>Tinggi Drop Ceiling (cm)</label>
-                                    <input type="number" id="tinggiDropLED" placeholder="15" min="5" max="50" value="15"
-                                        onchange="updateLEDCalculation()">
-                                </div>
-                                <div>
-                                    <label>Jarak dari Tepi (cm)</label>
-                                    <input type="number" id="jarakTepiLED" placeholder="20" min="5" max="100" value="20"
-                                        onchange="updateLEDCalculation()">
-                                </div>
-                            </div>
-                        </div>
-
-                        <!-- Hasil perhitungan -->
-                        <div id="ledResultBox" class="auto-calc-result">
-                            <strong>Kebutuhan LED Strip:</strong><br>
-                            Panjang: <span id="panjangLEDAuto">0</span> meter
-                        </div>
-                    </div>
-
-                    <div id="lampuGantungOptions" class="toggle-options">
-                        <div class="input-row">
-                            <div>
-                                <label>Tipe Lampu Gantung</label>
-                                <select id="tipeLampuGantung">
-                                    <option value="klasik">Klasik</option>
-                                    <option value="modern">Modern</option>
-                                    <option value="minimalis">Minimalis</option>
-                                </select>
-                            </div>
-                            <div>
-                                <label>Jumlah Lampu</label>
-                                <input type="number" id="jumlahLampuGantung" placeholder="1" min="1" max="5" value="1"
-                                    oninput="updateAllCalculations()">
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-            <!-- TAB 4: LISTRIK -->
-            <div id="tab-listrik" class="tab-content">
-                <div class="section">
-                    <div class="section-title">🔌 Instalasi Listrik (Otomatis)</div>
-
                     <div class="input-row">
                         <div>
-                            <label>Stop Kontak</label>
-                            <input type="number" id="stopKontak" placeholder="3" min="0" max="10" value="3"
-                                onchange="hitungListrikOtomatis()">
+                            <label>Kualitas PVC</label>
+                            <select id="kualitasPVC">
+                                <option value="standard">Standard</option>
+                                <option value="sni">SNI</option>
+                            </select>
                         </div>
-                        <div>
-                            <label>Saklar</label>
-                            <input type="number" id="saklar" placeholder="2" min="0" max="10" value="2"
-                                onchange="hitungListrikOtomatis()">
-                        </div>
-                    </div>
-
-                    <div class="note-box">
-                        <strong>📊 PERHITUNGAN OTOMATIS:</strong>
-                        <div id="listrikAutoCalc">
-                            Menghitung berdasarkan jumlah titik lampu dan ukuran ruangan...
-                        </div>
-                    </div>
-
-                    <div class="material-details" style="margin-top: 15px;">
-                        <div class="detail-item">
-                            <div class="detail-label">Kabel NYM 2×1.5</div>
-                            <div class="detail-value"><span id="kabelNymAuto">0</span> m</div>
-                        </div>
-                        <div class="detail-item">
-                            <div class="detail-label">Pipa Conduit</div>
-                            <div class="detail-value"><span id="pipaConduitAuto">0</span> m</div>
-                        </div>
-                        <div class="detail-item">
-                            <div class="detail-label">Box Saklar</div>
-                            <div class="detail-value"><span id="boxSaklarAuto">0</span> buah</div>
-                        </div>
-                        <div class="detail-item">
-                            <div class="detail-label">Box Stop Kontak</div>
-                            <div class="detail-value"><span id="boxStopKontakAuto">0</span> buah</div>
-                        </div>
-                    </div>
-
-                    <div class="note-box" style="margin-top: 10px; background: #e8f4fd;">
-                        <strong>📝 RUMUS PERHITUNGAN:</strong><br>
-                        1. Kabel = (Keliling × 1.5) + (Jumlah titik × 3m)<br>
-                        2. Pipa = 80% dari panjang kabel<br>
-                        3. Box = Sama dengan jumlah titik
                     </div>
                 </div>
+
+                <div class="section">
+                    <div class="section-title">🔩 RANGKA HOLLOW</div>
+                    <div class="input-row">
+                        <div>
+                            <label>Jarak Hollow Utama</label>
+                            <select id="jarakHollowUtama">
+                                <option value="0.60">60 cm</option>
+                                <option value="0.80" selected>80 cm</option>
+                                <option value="1.00">100 cm</option>
+                            </select>
+                        </div>
+                        <div>
+                            <label>Jarak Hollow Cross</label>
+                            <select id="jarakHollowCross">
+                                <option value="0.40">40 cm</option>
+                                <option value="0.60" selected>60 cm</option>
+                            </select>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="section">
+                    <div class="section-title">💡 PENERANGAN</div>
+                    <div class="input-row">
+                        <div>
+                            <label>Jumlah Downlight</label>
+                            <input type="number" id="jumlahDownlight" placeholder="4" min="0" max="20" value="4">
+                        </div>
+                        <div>
+                            <label>Watt Downlight</label>
+                            <select id="wattDownlight">
+                                <option value="9">9W</option>
+                                <option value="12" selected>12W</option>
+                                <option value="15">15W</option>
+                            </select>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <button class="btn-calculate" onclick="hitungProyek()">
+                🧮 HITUNG DETAIL PER BAGIAN
+            </button>
+
+            <div class="note-box">
+                <strong>📋 KETERANGAN BAGIAN:</strong><br>
+                • Filed = Area rata plafon<br>
+                • Drop = Area yang turun<br>
+                • Border = Pinggiran warna berbeda<br>
+                • Lis dinding = Untuk sambungan ke dinding<br>
+                • Lis siku = Untuk sudut drop<br>
+                • Lis tutup = Untuk pinggiran drop
             </div>
         </div>
 
-        <!-- PANEL KANAN: VISUALISASI & PREVIEW -->
+        <!-- PANEL KANAN: INFORMASI -->
         <div class="panel">
-            <h2>👁️ PREVIEW & VISUALISASI</h2>
+            <h2>ℹ️ INFORMASI MODEL</h2>
 
-            <div class="visualization-box">
-                <div id="visualCanvas">
-                    <div style="text-align: center; padding: 40px; color: #6c757d;">
-                        <div style="font-size: 48px; margin-bottom: 20px;">🏗️</div>
-                        <h3>Visualisasi Desain</h3>
-                        <p>Hasil visualisasi akan muncul di sini setelah perhitungan</p>
+            <div class="section">
+                <div class="section-title">📝 JENIS-JENIS PLAFON</div>
+                <div style="background: #f8f9fa; padding: 15px; border-radius: 8px; font-size: 14px;">
+                    <div style="margin-bottom: 10px;">
+                        <strong>1. Flat 1 Warna:</strong><br>
+                        • Seluruh plafon rata satu warna<br>
+                        • Hanya butuh filed<br>
+                        • Lis: dinding saja
                     </div>
-                </div>
-
-                <div id="colorPreview" style="display: none;">
-                    <div class="color-palette">
-                        <div class="color-item">
-                            <div class="color-swatch" id="colorBorder"></div>
-                            <span id="colorBorderText">Border</span>
-                        </div>
-                        <div class="color-item">
-                            <div class="color-swatch" id="colorField"></div>
-                            <span id="colorFieldText">Field</span>
-                        </div>
+                    <div style="margin-bottom: 10px;">
+                        <strong>2. Flat 2 Warna:</strong><br>
+                        • Filed utama + border warna berbeda<br>
+                        • Lis: dinding + transisi
+                    </div>
+                    <div style="margin-bottom: 10px;">
+                        <strong>3. Drop Pinggir:</strong><br>
+                        • Pinggir ruangan turun<br>
+                        • Lis: dinding + siku + tutup
+                    </div>
+                    <div style="margin-bottom: 10px;">
+                        <strong>4. Drop Tengah:</strong><br>
+                        • Tengah ruangan turun<br>
+                        • Lis: dinding + siku + tutup
+                    </div>
+                    <div>
+                        <strong>5. Drop Gabungan:</strong><br>
+                        • Drop pinggir + filed + drop tengah<br>
+                        • Lis: dinding + siku + tutup + transisi
                     </div>
                 </div>
             </div>
 
             <div class="section">
-                <div class="section-title">📋 Ringkasan Input</div>
-                <div id="inputSummary">
-                    <p>Masukkan data di panel kiri untuk melihat ringkasan</p>
+                <div class="section-title">📊 RUMUS PERHITUNGAN</div>
+                <div style="background: #e8f4fd; padding: 15px; border-radius: 8px; font-size: 13px;">
+                    <div style="margin-bottom: 8px;">
+                        <strong>Luas Filed:</strong><br>
+                        Luas ruangan - luas drop - luas border
+                    </div>
+                    <div style="margin-bottom: 8px;">
+                        <strong>Luas Drop Pinggir:</strong><br>
+                        Keliling ruangan × lebar drop
+                    </div>
+                    <div style="margin-bottom: 8px;">
+                        <strong>Luas Drop Tengah:</strong><br>
+                        (Panjang - 2×jarak) × (Lebar - 2×jarak)
+                    </div>
+                    <div>
+                        <strong>Panjang Lis:</strong><br>
+                        • Dinding: keliling ruangan<br>
+                        • Siku: keliling drop<br>
+                        • Transisi: panjang border
+                    </div>
                 </div>
             </div>
 
-            <div class="note-box">
-                <strong>Perhitungan Realistis:</strong><br>
-                <div id="realTimeCalc">
-                    Klik tombol hitung untuk melihat perhitungan realistis
+            <div class="section">
+                <div class="section-title">💰 HARGA MATERIAL</div>
+                <div style="background: #fff8e1; padding: 15px; border-radius: 8px; font-size: 13px;">
+                    <div style="display: grid; grid-template-columns: 2fr 1fr; gap: 5px; margin-bottom: 5px;">
+                        <div><strong>PVC Standard 4m:</strong></div>
+                        <div>Rp 48.000</div>
+                    </div>
+                    <div style="display: grid; grid-template-columns: 2fr 1fr; gap: 5px; margin-bottom: 5px;">
+                        <div><strong>PVC SNI 4m:</strong></div>
+                        <div>Rp 60.000</div>
+                    </div>
+                    <div style="display: grid; grid-template-columns: 2fr 1fr; gap: 5px; margin-bottom: 5px;">
+                        <div><strong>Lis Dinding:</strong></div>
+                        <div>Rp 50.000/4m</div>
+                    </div>
+                    <div style="display: grid; grid-template-columns: 2fr 1fr; gap: 5px; margin-bottom: 5px;">
+                        <div><strong>Lis Siku:</strong></div>
+                        <div>Rp 45.000/4m</div>
+                    </div>
+                    <div style="display: grid; grid-template-columns: 2fr 1fr; gap: 5px;">
+                        <div><strong>Lis Tutup:</strong></div>
+                        <div>Rp 40.000/4m</div>
+                    </div>
                 </div>
             </div>
-
-            <button class="btn-calculate" onclick="hitungProyek()">
-                🧮 HITUNG RAB PROYEK
-            </button>
         </div>
     </div>
 
     <!-- HASIL KALKULASI -->
     <div id="resultsPanel" class="results-panel" style="display: none;">
-        <h2>📊 HASIL PERHITUNGAN PROYEK: <span id="projectNameDisplay"></span></h2>
+        <h2>📊 HASIL PERHITUNGAN DETAIL</h2>
 
+        <!-- CARD 1: RINCIAN BAGIAN -->
         <div class="material-card">
             <div class="material-header">
-                <div class="material-title">🧱 MATERIAL PLAFON PVC</div>
-                <div id="totalPVC" class="material-qty">0 LEMBAR</div>
+                <div class="material-title">📐 RINCIAN BAGIAN PLAFON</div>
+                <div class="material-qty" id="totalLuas">0 m²</div>
             </div>
-            <div id="materialDetails"></div>
+            <div id="detailBagian"></div>
         </div>
 
+        <!-- CARD 2: KEBUTUHAN PVC PER BAGIAN -->
         <div class="material-card">
             <div class="material-header">
-                <div class="material-title">🔩 RANGKA & AKSESORIS</div>
-                <div id="totalHollow" class="material-qty">0 BATANG</div>
+                <div class="material-title">🧱 KEBUTUHAN PVC PER BAGIAN</div>
+                <div class="material-qty" id="totalPVC">0 LEMBAR</div>
             </div>
-            <div id="rangkaDetails"></div>
+            <div id="detailPVC"></div>
         </div>
 
+        <!-- CARD 3: KEBUTUHAN LIS -->
         <div class="material-card">
             <div class="material-header">
-                <div class="material-title">💡 SISTEM PENERANGAN</div>
-                <div id="totalLampu" class="material-qty">0 TITIK</div>
+                <div class="material-title">📏 KEBUTUHAN LIS</div>
+                <div class="material-qty" id="totalLis">0 BATANG</div>
             </div>
-            <div id="peneranganDetails"></div>
+            <div id="detailLis"></div>
         </div>
 
+        <!-- CARD 4: HOLLOW & AKSESORIS -->
         <div class="material-card">
             <div class="material-header">
-                <div class="material-title">🔌 INSTALASI LISTRIK</div>
-                <div id="totalListrik" class="material-qty">0 ITEM</div>
+                <div class="material-title">🔧 HOLLOW & AKSESORIS</div>
+                <div class="material-qty" id="totalHollow">0 BATANG</div>
             </div>
-            <div id="listrikDetails"></div>
+            <div id="detailHollow"></div>
         </div>
 
         <div class="cost-summary">
-            <h3 style="margin-bottom: 15px;">💰 RINCIAN BIAYA PROYEK</h3>
+            <h3 style="margin-bottom: 15px;">💰 TOTAL BIAYA PROYEK</h3>
             <div id="costTotal" class="cost-total">Rp 0</div>
-            <p>Total biaya material + jasa pemasangan</p>
-
-            <div class="cost-breakdown">
-                <div class="breakdown-item">
-                    <div>Material Plafon</div>
-                    <div id="costPlafon" style="font-weight: bold; font-size: 18px;">Rp 0</div>
-                </div>
-                <div class="breakdown-item">
-                    <div>Penerangan & Listrik</div>
-                    <div id="costListrik" style="font-weight: bold; font-size: 18px;">Rp 0</div>
-                </div>
-                <div class="breakdown-item">
-                    <div>Jasa Pemasangan</div>
-                    <div id="costJasa" style="font-weight: bold; font-size: 18px;">Rp 0</div>
-                </div>
+            <div style="margin-top: 20px;">
+                <button class="btn-calculate" onclick="window.print()" style="background: linear-gradient(135deg, #6c757d, #495057); width: auto; padding: 12px 30px;">
+                    🖨️ CETAK RINCIAN
+                </button>
+                <button class="btn-calculate" onclick="resetCalculator()" style="background: linear-gradient(135deg, #e74c3c, #c0392b); width: auto; padding: 12px 30px; margin-left: 15px;">
+                    🔄 HITUNG LAGI
+                </button>
             </div>
-        </div>
-
-        <div class="warning-box">
-            <strong>📝 CATATAN TEKNIS PROYEK:</strong><br>
-            1. Perhitungan berdasarkan pengalaman tukang lapangan<br>
-            2. Sudah termasuk waste material 5-10%<br>
-            3. Harga material dapat berubah sesuai lokasi dan merk<br>
-            4. Disarankan survey lapangan sebelum eksekusi<br>
-            5. Perhitungan LED Strip dan listrik sudah otomatis berdasarkan desain
-        </div>
-
-        <div style="text-align: center; margin-top: 25px;">
-            <button class="btn-calculate" onclick="window.print()"
-                style="background: linear-gradient(135deg, #6c757d, #495057); width: auto; padding: 12px 30px;">
-                🖨️ CETAK RAB PROYEK
-            </button>
-            <button class="btn-calculate" onclick="resetCalculator()"
-                style="background: linear-gradient(135deg, #e74c3c, #c0392b); width: auto; padding: 12px 30px; margin-left: 15px;">
-                🔄 HITUNG ULANG
-            </button>
         </div>
     </div>
 
     <script>
-        // HARGA MATERIAL (Realistis 2024)
-        const HARGA = {
-            // PVC
-            pvc std: {
-                '3': { '0.20': 36000 },
-                '4': { '0.20': 48000 },
-                '5': { '0.20': 60000 },
-                '6': { '0.20': 72000 }
+        // ========== HARGA MATERIAL ==========
+        const harga = {
+            pvcStandard: {
+                '3': 36000,
+                '4': 48000,
+                '5': 60000
             },
-
-            pvc sni: {
-                '3': { '0.20': 45000 },
-                '4': { '0.20': 60000 },
-                '5': { '0.20': 75000 },
-                '6': { '0.20': 90000 }
+            pvcSni: {
+                '3': 45000,
+                '4': 60000,
+                '5': 75000
             },
-
-            // Rangka
-            hollow std: 13000,
-            hollow sni: 22000,
+            hollow: {
+                standard: 13000,
+                sni: 22000,
+                '4x2': 11000,
+                '4x4': 14000
+            },
             lis: {
-                dinding: 50000,
-                transisi: 50000,
-                tutup: 50000,
+                dinding: 50000,    // per 4m
+                transisi: 45000,   // per 4m
+                siku: 45000,       // per 4m
+                tutup: 40000       // per 4m
             },
-
-            // Penerangan
-            downlight: {
-                '9': 35000,
-                '12': 40000,
-                '15': 65000,
-                '18': 75000
+            penerangan: {
+                downlight9: 35000,
+                downlight12: 45000,
+                downlight15: 50000
             },
-            ledStrip: {
-                '2835': 18000,
-                '5050': 25000,
-                'rgbw': 35000
+            aksesoris: {
+                sekrupPvc: 30000,
+                sekrupHollow: 30000,
+                silikon: 45000
             },
-            driverLED: 80000,
-            lampuGantung: {
-                'klasik': 500000,
-                'modern': 500000,
-                'minimalis': 50000
-            },
-
-            // Listrik
-            stopKontak: 35000,
-            saklar: 35000,
-            kabelNym15: 12000,
-            pipaConduit: 5000,
-            boxSaklar: 12000,
-            boxStopKontak: 15000,
-
-            // Aksesoris
-            sekrup: {
-                pvc: 300,
-                hollow: 400
-            },
-            silikon: 25000,
-            hanger: 1200,
-            furing: 10000,
-
-            // Jasa
             jasa: {
-                flat: 60000,
-                drop: 80000
+                flat1warna: 25000,
+                flat2warna: 30000,
+                dropPinggir: 35000,
+                dropTengah: 45000,
+                dropGabungan: 50000
             }
         };
-
-        // WARNA UNTUK VISUALISASI
-        const WARNA = {
-            hitam: '#000000',
-            coklat: '#8B4513',
-            abu: '#808080',
-            navy: '#2F4F4F',
-            putih: '#FFFFFF',
-            cream: '#F5F5DC',
-            lightgrey: '#F0F0F0'
-        };
-
-        // VARIABEL GLOBAL
-        let currentTab = 'ukuran';
 
         // ========== FUNGSI UTAMA ==========
         function switchTab(tabName) {
-            document.querySelectorAll('.tab-content').forEach(tab => {
-                tab.classList.remove('active');
-            });
-            document.querySelectorAll('.tab').forEach(tab => {
-                tab.classList.remove('active');
-            });
+            document.querySelectorAll('.tab-content').forEach(tab => tab.classList.remove('active'));
+            document.querySelectorAll('.tab').forEach(tab => tab.classList.remove('active'));
 
             document.getElementById('tab-' + tabName).classList.add('active');
-            event.target.classList.add('active');
-            currentTab = tabName;
-
-            updatePreview();
-        }
-
-        // ========== TOGGLE OPTIONS ==========
-        function toggleDropOptions() {
-            const dropChecked = document.getElementById('drop').checked;
-            document.getElementById('dropOptions').classList.toggle('show', dropChecked);
-            updateAllCalculations();
-        }
-
-        function toggleWarnaOptions() {
-            const duaWarnaChecked = document.getElementById('duaWarna').checked;
-            document.getElementById('duaWarnaOptions').classList.toggle('show', duaWarnaChecked);
-            updatePreview();
-            updateAllCalculations();
-        }
-
-        function toggleDownlightOptions() {
-            const checked = document.getElementById('downlight').checked;
-            document.getElementById('downlightOptions').classList.toggle('show', checked);
-            updateAllCalculations();
-        }
-
-        function toggleLEDOptions() {
-            const checked = document.getElementById('ledStrip').checked;
-            document.getElementById('ledStripOptions').classList.toggle('show', checked);
-            if (checked) updateLEDCalculation();
-            updateAllCalculations();
-        }
-
-        function toggleLampuGantungOptions() {
-            const checked = document.getElementById('lampuGantung').checked;
-            document.getElementById('lampuGantungOptions').classList.toggle('show', checked);
-            updateAllCalculations();
-        }
-
-        // ========== UPDATE SEMUA PERHITUNGAN ==========
-        function updateAllCalculations() {
-            updatePreview();
-            hitungListrikOtomatis();
-            updateLEDCalculation();
-            updateRealTimeCalc();
-        }
-
-        // ========== UPDATE PREVIEW ==========
-        function updatePreview() {
-            const p1 = parseFloat(document.getElementById('p1').value) || 4.0;
-            const p2 = parseFloat(document.getElementById('p2').value) || 4.0;
-            const l1 = parseFloat(document.getElementById('l1').value) || 3.0;
-            const l2 = parseFloat(document.getElementById('l2').value) || 3.0;
-            const P = Math.max(p1, p2);
-            const L = Math.max(l1, l2);
-
-            const modelPlafon = document.querySelector('input[name="modelPlafon"]:checked').value;
-            const warnaPlafon = document.querySelector('input[name="warnaPlafon"]:checked').value;
-
-            let summary = `<div class="detail-item">
-                <div class="detail-label">Ukuran Ruangan</div>
-                <div class="detail-value">${P.toFixed(2)}m × ${L.toFixed(2)}m</div>
-            </div>`;
-
-            summary += `<div class="detail-item">
-                <div class="detail-label">Model Plafon</div>
-                <div class="detail-value">${modelPlafon === 'flat' ? 'Flat Standard' : 'Drop Ceiling'}</div>
-            </div>`;
-
-            summary += `<div class="detail-item">
-                <div class="detail-label">Warna</div>
-                <div class="detail-value">${warnaPlafon === 'satu' ? 'Satu Warna' : 'Dua Warna'}</div>
-            </div>`;
-
-            document.getElementById('inputSummary').innerHTML = `<div class="material-details">${summary}</div>`;
-
-            // Update color preview jika 2 warna
-            if (warnaPlafon === 'dua') {
-                const warnaBorder = document.getElementById('warnaBorder').value;
-                const warnaField = document.getElementById('warnaField').value;
-
-                document.getElementById('colorBorder').style.backgroundColor = WARNA[warnaBorder];
-                document.getElementById('colorField').style.backgroundColor = WARNA[warnaField];
-                document.getElementById('colorBorderText').textContent = `Border: ${warnaBorder}`;
-                document.getElementById('colorFieldText').textContent = `Field: ${warnaField}`;
-                document.getElementById('colorPreview').style.display = 'block';
-            } else {
-                document.getElementById('colorPreview').style.display = 'none';
+            document.querySelector(`[onclick="switchTab('${tabName}')"]`).classList.add('active');
+            
+            if (tabName === 'ukuran') {
+                updateLuas();
             }
         }
 
-        // ========== PERHITUNGAN REAL-TIME ==========
-        function updateRealTimeCalc() {
-            const p1 = parseFloat(document.getElementById('p1').value) || 4.0;
-            const p2 = parseFloat(document.getElementById('p2').value) || 4.0;
-            const l1 = parseFloat(document.getElementById('l1').value) || 3.0;
-            const l2 = parseFloat(document.getElementById('l2').value) || 3.0;
-            const P = Math.max(p1, p2);
-            const L = Math.max(l1, l2);
+        function updateModelSettings() {
+            const model = document.querySelector('input[name="modelPlafon"]:checked').value;
+            
+            // Sembunyikan semua settings
+            ['Flat2warna', 'DropPinggir', 'DropTengah', 'DropGabungan'].forEach(type => {
+                document.getElementById('settings' + type).style.display = 'none';
+            });
+            
+            // Tampilkan settings sesuai model
+            if (model !== 'flat') {
+                document.getElementById('settings' + model.charAt(0).toUpperCase() + model.slice(1)).style.display = 'block';
+            }
+        }
+
+        function updateLuas() {
+            const P = parseFloat(document.getElementById('panjang').value) || 4;
+            const L = parseFloat(document.getElementById('lebar').value) || 3;
             const luas = P * L;
-
-            const panjangPVC = document.getElementById('panjangPVC').value;
-            const lebarPVC = document.getElementById('lebarPVC').value;
-            const luasPerLembar = parseFloat(panjangPVC) * parseFloat(lebarPVC);
-
-            // Perhitungan realistis
-            const pvcRealistic = Math.ceil(luas / luasPerLembar * 1.08);
-            const hollowRealistic = Math.ceil(luas / 1.2);
-            const lisRealistic = Math.ceil((2 * (P + L)) / 3.8);
-
-            document.getElementById('realTimeCalc').innerHTML = `
-                • Luas Ruangan: ${luas.toFixed(2)} m²<br>
-                • PVC (${panjangPVC}m×${lebarPVC * 100}cm): ±${pvcRealistic} lembar<br>
-                • Hollow: ±${hollowRealistic} batang<br>
-                • Lis: ±${lisRealistic} batang
-            `;
+            
+            document.getElementById('luasDisplay').textContent = luas.toFixed(2) + ' m²';
         }
 
-        // ========== LISTRIK OTOMATIS ==========
-        function hitungListrikOtomatis() {
-            const p1 = parseFloat(document.getElementById('p1').value) || 4;
-            const p2 = parseFloat(document.getElementById('p2').value) || 4;
-            const l1 = parseFloat(document.getElementById('l1').value) || 3;
-            const l2 = parseFloat(document.getElementById('l2').value) || 3;
-
-            const P = Math.max(p1, p2);
-            const L = Math.max(l1, l2);
-            const keliling = 2 * (P + L);
-
-            const stopKontak = parseInt(document.getElementById('stopKontak').value) || 0;
-            const saklar = parseInt(document.getElementById('saklar').value) || 0;
-
-            const jumlahDownlight = document.getElementById('downlight').checked ?
-                parseInt(document.getElementById('jumlahDownlight').value) || 0 : 0;
-            const lampuGantung = document.getElementById('lampuGantung').checked ?
-                parseInt(document.getElementById('jumlahLampuGantung').value) || 0 : 0;
-            const totalTitikLampu = jumlahDownlight + lampuGantung;
-
-            // PERHITUNGAN OTOMATIS
-            let panjangKabel = 10;
-            panjangKabel += totalTitikLampu * 3;
-            panjangKabel += stopKontak * 2;
-            panjangKabel += saklar * 1.5;
-            panjangKabel += keliling * 0.5;
-            panjangKabel = Math.ceil(panjangKabel * 1.2);
-
-            const panjangPipa = Math.ceil(panjangKabel * 0.8);
-            const boxSaklar = saklar;
-            const boxStopKontak = stopKontak;
-
-            // Update tampilan
-            document.getElementById('kabelNymAuto').textContent = panjangKabel;
-            document.getElementById('pipaConduitAuto').textContent = panjangPipa;
-            document.getElementById('boxSaklarAuto').textContent = boxSaklar;
-            document.getElementById('boxStopKontakAuto').textContent = boxStopKontak;
-
-            const infoText = `
-                • Titik Lampu: ${totalTitikLampu} titik<br>
-                • Stop Kontak: ${stopKontak} titik<br>
-                • Saklar: ${saklar} titik<br>
-                • Keliling: ${keliling.toFixed(1)}m<br>
-                • <strong>Kabel: ${panjangKabel}m</strong>
-            `;
-            document.getElementById('listrikAutoCalc').innerHTML = infoText;
-        }
-
-        // ========== LED STRIP OTOMATIS ==========
-        function updateLEDCalculation() {
-            const p1 = parseFloat(document.getElementById('p1').value) || 4;
-            const p2 = parseFloat(document.getElementById('p2').value) || 4;
-            const l1 = parseFloat(document.getElementById('l1').value) || 3;
-            const l2 = parseFloat(document.getElementById('l2').value) || 3;
-
-            const P = Math.max(p1, p2);
-            const L = Math.max(l1, l2);
-            const keliling = 2 * (P + L);
-
-            const posisiLED = document.getElementById('posisiLEDSelect').value;
-            let panjangLED = 0;
-            let infoText = '';
-
-            switch (posisiLED) {
-                case 'lisTengah':
-                    panjangLED = Math.ceil(P * 1.1);
-                    infoText = `<strong>Lis Tengah Plafon:</strong><br>1 garis di tengah, Panjang: ${panjangLED}m`;
-                    break;
-                case 'coveDrop':
-                    const tinggiDrop = parseFloat(document.getElementById('tinggiDropLED').value) || 15;
-                    const jarakTepi = parseFloat(document.getElementById('jarakTepiLED').value) || 20;
-                    const kelilingCove = 2 * ((P - 2 * (jarakTepi / 100)) + (L - 2 * (jarakTepi / 100)));
-                    panjangLED = Math.ceil(kelilingCove * 1.15);
-                    infoText = `<strong>Cove Drop Ceiling:</strong><br>Tinggi drop ${tinggiDrop}cm, Panjang: ${panjangLED}m`;
-                    break;
-                case 'coveWall':
-                    panjangLED = Math.ceil(keliling * 1.1);
-                    infoText = `<strong>Cove Dinding:</strong><br>Sekeliling plafon, Panjang: ${panjangLED}m`;
-                    break;
-                case 'plafonLangsung':
-                    panjangLED = Math.ceil(keliling * 1.1);
-                    infoText = `<strong>Sekeliling Plafon:</strong><br>Border lighting, Panjang: ${panjangLED}m`;
-                    break;
-            }
-
-            document.getElementById('ledInfoContent').innerHTML = infoText;
-            document.getElementById('panjangLEDAuto').textContent = panjangLED;
-            document.getElementById('coveDropOptions').style.display =
-                (posisiLED === 'coveDrop') ? 'block' : 'none';
-        }
-
-        // ========== FUNGSI HITUNG PROYEK UTAMA ==========
+        // ========== PERHITUNGAN DETAIL PER BAGIAN ==========
         function hitungProyek() {
-            const data = collectInputData();
-            if (!validateInput(data)) return;
+            const data = {
+                // Ukuran
+                P: parseFloat(document.getElementById('panjang').value) || 4,
+                L: parseFloat(document.getElementById('lebar').value) || 3,
+                
+                // Model
+                model: document.querySelector('input[name="modelPlafon"]:checked').value,
+                
+                // Settings masing-masing model
+                lebarBorder: parseFloat(document.getElementById('lebarBorder').value) || 40,
+                lebarDropPinggir: parseFloat(document.getElementById('lebarDropPinggir').value) || 40,
+                tinggiDropPinggir: parseFloat(document.getElementById('tinggiDropPinggir').value) || 15,
+                jarakDropTengah: parseFloat(document.getElementById('jarakDropTengah').value) || 50,
+                lebarFiledDropTengah: parseFloat(document.getElementById('lebarFiledDropTengah').value) || 60,
+                tinggiDropTengah: parseFloat(document.getElementById('tinggiDropTengah').value) || 20,
+                lebarDropGabPinggir: parseFloat(document.getElementById('lebarDropGabPinggir').value) || 30,
+                tinggiDropGabPinggir: parseFloat(document.getElementById('tinggiDropGabPinggir').value) || 10,
+                lebarFiledGabungan: parseFloat(document.getElementById('lebarFiledGabungan').value) || 50,
+                tinggiDropGabTengah: parseFloat(document.getElementById('tinggiDropGabTengah').value) || 20,
+                
+                // Material
+                panjangPVC: parseFloat(document.getElementById('panjangPVC').value) || 4,
+                lebarPVC: parseFloat(document.getElementById('lebarPVC').value) || 0.20,
+                kualitasPVC: document.getElementById('kualitasPVC').value,
+                
+                // Rangka
+                jarakHollowUtama: parseFloat(document.getElementById('jarakHollowUtama').value) || 0.8,
+                jarakHollowCross: parseFloat(document.getElementById('jarakHollowCross').value) || 0.6,
+                
+                // Tambahan
+                tambahHollow: parseInt(document.getElementById('tambahHollow').value) || 0,
+                tipeHollowTambahan: document.getElementById('tipeHollowTambahan').value,
+                
+                // Penerangan
+                jumlahDownlight: parseInt(document.getElementById('jumlahDownlight').value) || 4,
+                wattDownlight: parseInt(document.getElementById('wattDownlight').value) || 12
+            };
 
-            const material = calculateMaterial(data);
-            const biaya = calculateBiaya(material, data);
+            // Hitung per bagian
+            const hasil = hitungDetailPerBagian(data);
 
-            displayResults(material, biaya, data);
-            drawVisualization(data, material);
+            // Tampilkan hasil
+            tampilkanHasilDetail(data, hasil);
 
+            // Scroll ke hasil
             document.getElementById('resultsPanel').style.display = 'block';
-            document.getElementById('projectNameDisplay').textContent = data.namaProyek;
             document.getElementById('resultsPanel').scrollIntoView({ behavior: 'smooth' });
         }
 
-        // ========== KOLEKSI DATA INPUT ==========
-        function collectInputData() {
-            return {
-                // Ukuran
-                p1: parseFloat(document.getElementById('p1').value),
-                p2: parseFloat(document.getElementById('p2').value),
-                l1: parseFloat(document.getElementById('l1').value),
-                l2: parseFloat(document.getElementById('l2').value),
-                t1: parseFloat(document.getElementById('t1').value),
-                t2: parseFloat(document.getElementById('t2').value),
-                namaProyek: document.getElementById('namaProyek').value,
-                jenisRuangan: document.getElementById('jenisRuangan').value,
-
-                // Plafon
-                modelPlafon: document.querySelector('input[name="modelPlafon"]:checked').value,
-                tinggiDrop: document.getElementById('tinggiDrop') ? parseFloat(document.getElementById('tinggiDrop').value) : 15,
-                levelDrop: document.getElementById('levelDrop') ? document.getElementById('levelDrop').value : '1',
-                warnaPlafon: document.querySelector('input[name="warnaPlafon"]:checked').value,
-                lebarBorder: parseFloat(document.getElementById('lebarBorder').value) / 100,
-                warnaBorder: document.getElementById('warnaBorder').value,
-                warnaField: document.getElementById('warnaField').value,
-                lisTransisi: document.getElementById('lisTransisi').value,
-                panjangPVC: document.getElementById('panjangPVC').value,
-                lebarPVC: document.getElementById('lebarPVC').value,
-                arahPVC: document.querySelector('input[name="arahPVC"]:checked').value,
-
-                // Rangka
-                paketRangka: document.querySelector('input[name="paketRangka"]:checked').value,
-                gantungan: document.querySelector('input[name="gantungan"]:checked').value,
-
-                // Aksesoris
-                silikon: document.getElementById('silikon').checked,
-                sekrup: document.getElementById('sekrup').checked,
-                furing: document.getElementById('furing').checked,
-
-                // Penerangan
-                downlight: document.getElementById('downlight').checked,
-                jumlahDownlight: document.getElementById('downlight').checked ? parseInt(document.getElementById('jumlahDownlight').value) : 0,
-                wattDownlight: document.getElementById('wattDownlight').value,
-                warnaCahaya: document.getElementById('warnaCahaya').value,
-                ledStrip: document.getElementById('ledStrip').checked,
-                panjangLED: parseInt(document.getElementById('panjangLEDAuto').textContent) || 0,
-                tipeLED: document.getElementById('tipeLED').value,
-                posisiLED: document.getElementById('posisiLEDSelect').value,
-                lampuGantung: document.getElementById('lampuGantung').checked,
-                jumlahLampuGantung: document.getElementById('lampuGantung').checked ? parseInt(document.getElementById('jumlahLampuGantung').value) : 0,
-                tipeLampuGantung: document.getElementById('tipeLampuGantung').value,
-
-                // Listrik
-                stopKontak: parseInt(document.getElementById('stopKontak').value),
-                saklar: parseInt(document.getElementById('saklar').value),
-                kabelNym: parseInt(document.getElementById('kabelNymAuto').textContent) || 0,
-                pipaConduit: parseInt(document.getElementById('pipaConduitAuto').textContent) || 0,
-                boxSaklar: parseInt(document.getElementById('boxSaklarAuto').textContent) || 0,
-                boxStopKontak: parseInt(document.getElementById('boxStopKontakAuto').textContent) || 0
-            };
-        }
-
-        // ========== VALIDASI INPUT ==========
-        function validateInput(data) {
-            if (!data.p1 || !data.p2 || !data.l1 || !data.l2 ||
-                data.p1 <= 0 || data.p2 <= 0 || data.l1 <= 0 || data.l2 <= 0) {
-                alert('Ukuran ruangan harus diisi dengan nilai positif!');
-                switchTab('ukuran');
-                return false;
-            }
-
-            if (!data.namaProyek.trim()) {
-                alert('Nama proyek harus diisi!');
-                document.getElementById('namaProyek').focus();
-                return false;
-            }
-
-            if (data.warnaPlafon === 'dua') {
-                const P = Math.max(data.p1, data.p2);
-                const L = Math.max(data.l1, data.l2);
-                if (data.lebarBorder >= P / 2 || data.lebarBorder >= L / 2) {
-                    alert('Lebar border terlalu besar! Maksimal 40% dari ukuran terkecil ruangan.');
-                    return false;
-                }
-            }
-
-            return true;
-        }
-
-        // ========== KALKULASI MATERIAL ==========
-        function calculateMaterial(data) {
-            const P = Math.max(data.p1, data.p2);
-            const L = Math.max(data.l1, data.l2);
-            const luas = P * L;
+        function hitungDetailPerBagian(data) {
+            const P = data.P;
+            const L = data.L;
+            const luasTotal = P * L;
             const keliling = 2 * (P + L);
-
-            const pvc = calculatePVC(P, L, data);
-            const hollow = calculateHollow(P, L, data);
-            const lis = calculateLis(keliling, data, P, L);
-            const penerangan = calculatePenerangan(P, L, data);
-            const listrik = calculateListrik(P, L, data);
-
-            return {
-                pvc: pvc,
-                hollow: hollow,
-                lis: lis,
-                penerangan: penerangan,
-                listrik: listrik,
-                dimensi: { P, L, luas, keliling }
+            
+            let hasil = {
+                bagian: {},
+                pvc: {},
+                lis: {},
+                hollow: {},
+                biaya: {}
             };
-        }
-
-        // ========== PERHITUNGAN PVC ==========
-        function calculatePVC(P, L, data) {
-            const panjangPVC = parseFloat(data.panjangPVC);
-            const lebarPVC = parseFloat(data.lebarPVC);
-            const luasPerLembar = panjangPVC * lebarPVC;
-            const luasRuangan = P * L;
-
-            if (data.warnaPlafon === 'dua') {
-                const borderWidth = data.lebarBorder;
-                const luasBorder = (P * L) - ((P - 2 * borderWidth) * (L - 2 * borderWidth));
-                const luasField = (P - 2 * borderWidth) * (L - 2 * borderWidth);
-
-                const pvcBorder = Math.ceil(luasBorder / luasPerLembar * 1.08);
-                const pvcField = Math.ceil(luasField / luasPerLembar * 1.08);
-
-                return {
-                    total: pvcBorder + pvcField,
-                    border: pvcBorder,
-                    field: pvcField,
-                    warnaBorder: data.warnaBorder,
-                    warnaField: data.warnaField
+            
+            // Hitung per bagian berdasarkan model
+            if (data.model === 'flat') {
+                // FLAT 1 WARNA
+                hasil.bagian = {
+                    filed: luasTotal
                 };
-            } else {
-                // PERHITUNGAN REALISTIS TUKANG
-                let nPvc = Math.ceil(luasRuangan / luasPerLembar * 1.08);
-
-                // Koreksi untuk ukuran standar
-                if (P === 4 && L === 3 && panjangPVC === 4 && lebarPVC === 0.2) {
-                    nPvc = 15; // Realistis untuk 4x3m
-                }
-                if (P === 4 && L === 4 && panjangPVC === 4 && lebarPVC === 0.2) {
-                    nPvc = 20; // Realistis untuk 4x4m
-                }
-
-                return {
-                    total: nPvc,
-                    border: 0,
-                    field: nPvc,
-                    warnaBorder: null,
-                    warnaField: 'putih'
+                hasil.pvc = {
+                    filed: hitungKebutuhanPVC(luasTotal, data.panjangPVC, data.lebarPVC, 1.1) // +10% waste
                 };
-            }
-        }
-
-        // ========== PERHITUNGAN HOLLOW ==========
-        function calculateHollow(P, L, data) {
-            const luasRuangan = P * L;
-            let totalBatang;
-
-            // PERHITUNGAN REALISTIS TUKANG
-            if (data.paketRangka === 'premium') {
-                totalBatang = Math.ceil(luasRuangan / 0.6); // 50×60cm
-            } else if (data.paketRangka === 'ekonomis') {
-                totalBatang = Math.ceil(luasRuangan / 1.0); // 80×100cm
-            } else {
-                totalBatang = Math.ceil(luasRuangan / 0.8); // 60×80cm standar
-            }
-
-            // Koreksi tanpa gantungan
-            if (data.gantungan === 'tidak') {
-                totalBatang = Math.ceil(totalBatang * 0.8);
-            }
-
-            // Koreksi untuk ukuran standar
-            if (P === 4 && L === 3) {
-                totalBatang = data.gantungan === 'ya' ? 15 : 12;
-            }
-            if (P === 4 && L === 4) {
-                totalBatang = data.gantungan === 'ya' ? 20 : 16;
-            }
-
-            const keliling = 2 * (P + L);
-            const batangPinggir = Math.ceil(keliling / 4);
-            const sisa = totalBatang - batangPinggir;
-            const batangUtama = Math.ceil(sisa * 0.6);
-            const batangPengikat = sisa - batangUtama;
-
-            return {
-                total: totalBatang,
-                utama: batangUtama,
-                pengikat: batangPengikat,
-                pinggir: batangPinggir,
-                jarakUtama: data.paketRangka === 'premium' ? 0.5 : 0.6,
-                jarakPengikat: data.paketRangka === 'premium' ? 0.6 : 0.8
-            };
-        }
-
-        // ========== PERHITUNGAN LIS ==========
-        function calculateLis(keliling, data, P, L) {
-            // Realistis dengan waste
-            const lisDinding = Math.ceil(keliling / 3.8);
-
-            if (data.warnaPlafon === 'dua') {
-                const borderWidth = data.lebarBorder;
-                const kelilingField = 2 * ((P - 2 * borderWidth) + (L - 2 * borderWidth));
-                const lisTransisi = Math.ceil(kelilingField / 3.8);
-
-                return {
-                    dinding: lisDinding,
-                    transisi: lisTransisi,
-                    total: lisDinding + lisTransisi
+                hasil.lis = {
+                    dinding: Math.ceil(keliling / 4) // dalam batang @4m
                 };
-            } else {
-                // Koreksi untuk ukuran standar
-                if (P === 4 && L === 3) {
-                    return { dinding: 4, transisi: 0, total: 4 };
-                }
-                if (P === 4 && L === 4) {
-                    return { dinding: 5, transisi: 0, total: 5 };
-                }
-
-                return { dinding: lisDinding, transisi: 0, total: lisDinding };
-            }
-        }
-
-        // ========== PERHITUNGAN PENERANGAN ==========
-        function calculatePenerangan(P, L, data) {
-            let result = {
-                downlight: 0,
-                ledStrip: 0,
-                lampuGantung: 0,
-                totalDaya: 0,
-                posisi: []
-            };
-
-            if (data.downlight && data.jumlahDownlight > 0) {
-                result.downlight = data.jumlahDownlight;
-                result.totalDaya += data.jumlahDownlight * parseInt(data.wattDownlight);
-
-                const posisi = calculatePosisiDownlight(P, L, data.jumlahDownlight);
-                result.posisi = posisi;
-            }
-
-            if (data.ledStrip && data.panjangLED > 0) {
-                result.ledStrip = data.panjangLED;
-                result.totalDaya += data.panjangLED * 10;
-            }
-
-            if (data.lampuGantung && data.jumlahLampuGantung > 0) {
-                result.lampuGantung = data.jumlahLampuGantung;
-                result.totalDaya += data.jumlahLampuGantung * 60;
-            }
-
-            return result;
-        }
-
-        // ========== POSISI DOWNLIGHT ==========
-        function calculatePosisiDownlight(P, L, jumlah) {
-            const posisi = [];
-            let rows, cols;
-
-            if (jumlah <= 4) {
-                rows = 2; cols = 2;
-            } else if (jumlah <= 6) {
-                rows = 2; cols = 3;
-            } else if (jumlah <= 9) {
-                rows = 3; cols = 3;
-            } else {
-                rows = Math.ceil(Math.sqrt(jumlah));
-                cols = Math.ceil(jumlah / rows);
-            }
-
-            const jarakX = P / (cols + 1);
-            const jarakY = L / (rows + 1);
-
-            let count = 0;
-            for (let r = 0; r < rows; r++) {
-                for (let c = 0; c < cols; c++) {
-                    if (count >= jumlah) break;
-                    posisi.push({
-                        x: jarakX * (c + 1),
-                        y: jarakY * (r + 1),
-                        no: count + 1
-                    });
-                    count++;
-                }
-                if (count >= jumlah) break;
-            }
-
-            return posisi;
-        }
-
-        // ========== PERHITUNGAN LISTRIK ==========
-        function calculateListrik(P, L, data) {
-            return {
-                stopKontak: data.stopKontak,
-                saklar: data.saklar,
-                kabelNym: data.kabelNym,
-                pipaConduit: data.pipaConduit,
-                boxSaklar: data.boxSaklar,
-                boxStopKontak: data.boxStopKontak
-            };
-        }
-
-        // ========== KALKULASI BIAYA ==========
-        function calculateBiaya(material, data) {
-            let total = 0;
-            let breakdown = {
-                plafon: 0,
-                listrik: 0,
-                jasa: 0,
-                detail: {
-                    pvc: 0,
-                    hollow: 0,
-                    lis: 0,
-                    aksesoris: 0,
-                    penerangan: 0,
-                    instalasiListrik: 0
-                }
-            };
-
-            // 1. PLAFON
-            const hargaPVC = HARGA.pvc[data.panjangPVC][data.lebarPVC];
-            breakdown.detail.pvc = material.pvc.total * hargaPVC;
-            breakdown.plafon += breakdown.detail.pvc;
-
-            breakdown.detail.hollow = material.hollow.total * HARGA.hollow;
-            breakdown.plafon += breakdown.detail.hollow;
-
-            breakdown.detail.lis = material.lis.dinding * HARGA.lis.dinding;
-            if (material.lis.transisi > 0) {
-                breakdown.detail.lis += material.lis.transisi * HARGA.lis.transisi;
-            }
-            breakdown.plafon += breakdown.detail.lis;
-
-            if (data.sekrup) {
-                const sekrupPVC = Math.ceil(material.pvc.total * 20 * 1.2);
-                const sekrupHollow = Math.ceil(material.hollow.total * 12 * 1.2);
-                breakdown.detail.aksesoris += sekrupPVC * HARGA.sekrup.pvc;
-                breakdown.detail.aksesoris += sekrupHollow * HARGA.sekrup.hollow;
-            }
-
-            if (data.silikon) {
-                const tubeSilikon = Math.ceil(material.dimensi.keliling / 8);
-                breakdown.detail.aksesoris += tubeSilikon * HARGA.silikon;
-            }
-
-            if (data.furing) {
-                const meterFuring = Math.ceil(material.dimensi.keliling * 1.1);
-                breakdown.detail.aksesoris += meterFuring * HARGA.furing;
-            }
-
-            breakdown.plafon += breakdown.detail.aksesoris;
-
-            // 2. PENERANGAN & LISTRIK
-            if (data.downlight && data.jumlahDownlight > 0) {
-                breakdown.detail.penerangan += data.jumlahDownlight * HARGA.downlight[data.wattDownlight];
-            }
-
-            if (data.ledStrip && data.panjangLED > 0) {
-                breakdown.detail.penerangan += data.panjangLED * HARGA.ledStrip[data.tipeLED];
-                breakdown.detail.penerangan += Math.ceil(data.panjangLED / 5) * HARGA.driverLED;
-            }
-
-            if (data.lampuGantung && data.jumlahLampuGantung > 0) {
-                breakdown.detail.penerangan += data.jumlahLampuGantung * HARGA.lampuGantung[data.tipeLampuGantung];
-            }
-
-            breakdown.detail.instalasiListrik += data.stopKontak * HARGA.stopKontak;
-            breakdown.detail.instalasiListrik += data.saklar * HARGA.saklar;
-            breakdown.detail.instalasiListrik += material.listrik.kabelNym * HARGA.kabelNym15;
-            breakdown.detail.instalasiListrik += material.listrik.pipaConduit * HARGA.pipaConduit;
-            breakdown.detail.instalasiListrik += data.boxSaklar * HARGA.boxSaklar;
-            breakdown.detail.instalasiListrik += data.boxStopKontak * HARGA.boxStopKontak;
-
-            breakdown.listrik = breakdown.detail.penerangan + breakdown.detail.instalasiListrik;
-
-            // 3. JASA
-            const hargaJasa = data.modelPlafon === 'drop' ? HARGA.jasa.drop : HARGA.jasa.flat;
-            breakdown.jasa = material.dimensi.luas * hargaJasa;
-            breakdown.jasa += material.listrik.stopKontak * 15000;
-            breakdown.jasa += material.listrik.saklar * 10000;
-
-            // TOTAL
-            total = breakdown.plafon + breakdown.listrik + breakdown.jasa;
-
-            return {
-                total: total,
-                breakdown: breakdown
-            };
-        }
-
-        // ========== TAMPILKAN HASIL ==========
-        function displayResults(material, biaya, data) {
-            document.getElementById('totalPVC').textContent = material.pvc.total + ' LEMBAR';
-            document.getElementById('totalHollow').textContent = material.hollow.total + ' BATANG';
-            document.getElementById('totalLampu').textContent =
-                (material.penerangan.downlight + material.penerangan.lampuGantung) + ' TITIK';
-            document.getElementById('totalListrik').textContent =
-                (data.stopKontak + data.saklar) + ' TITIK';
-
-            // Detail PVC
-            let pvcDetails = '';
-            if (material.pvc.warnaBorder) {
-                pvcDetails = `
-                <div class="material-details">
-                    <div class="detail-item">
-                        <div class="detail-label">PVC Border (${data.warnaBorder})</div>
-                        <div class="detail-value">${material.pvc.border} lembar</div>
-                    </div>
-                    <div class="detail-item">
-                        <div class="detail-label">PVC Field (${data.warnaField})</div>
-                        <div class="detail-value">${material.pvc.field} lembar</div>
-                    </div>
-                    <div class="detail-item">
-                        <div class="detail-label">Ukuran PVC</div>
-                        <div class="detail-value">${data.panjangPVC}m × ${(parseFloat(data.lebarPVC) * 100)}cm</div>
-                    </div>
-                    <div class="detail-item">
-                        <div class="detail-label">Total PVC</div>
-                        <div class="detail-value" style="color: var(--danger);">${material.pvc.total} lembar</div>
-                    </div>
-                </div>`;
-            } else {
-                pvcDetails = `
-                <div class="material-details">
-                    <div class="detail-item">
-                        <div class="detail-label">PVC Putih</div>
-                        <div class="detail-value">${material.pvc.total} lembar</div>
-                    </div>
-                    <div class="detail-item">
-                        <div class="detail-label">Ukuran PVC</div>
-                        <div class="detail-value">${data.panjangPVC}m × ${(parseFloat(data.lebarPVC) * 100)}cm</div>
-                    </div>
-                    <div class="detail-item">
-                        <div class="detail-label">Luas per Lembar</div>
-                        <div class="detail-value">${(parseFloat(data.panjangPVC) * parseFloat(data.lebarPVC)).toFixed(2)} m²</div>
-                    </div>
-                </div>`;
-            }
-            document.getElementById('materialDetails').innerHTML = pvcDetails;
-
-            // Detail Rangka
-            let rangkaDetails = `
-            <div class="material-details">
-                <div class="detail-item">
-                    <div class="detail-label">Hollow Utama</div>
-                    <div class="detail-value">${material.hollow.utama} batang</div>
-                </div>
-                <div class="detail-item">
-                    <div class="detail-label">Hollow Pengikat</div>
-                    <div class="detail-value">${material.hollow.pengikat} batang</div>
-                </div>
-                <div class="detail-item">
-                    <div class="detail-label">Hollow Pinggir</div>
-                    <div class="detail-value">${material.hollow.pinggir} batang</div>
-                </div>
-                <div class="detail-item">
-                    <div class="detail-label">Total Hollow</div>
-                    <div class="detail-value" style="color: var(--danger);">${material.hollow.total} batang</div>
-                </div>`;
-
-            if (material.lis.transisi > 0) {
-                rangkaDetails += `
-                <div class="detail-item">
-                    <div class="detail-label">Lis Tembok</div>
-                    <div class="detail-value">${material.lis.dinding} batang</div>
-                </div>
-                <div class="detail-item">
-                    <div class="detail-label">Lis Transisi</div>
-                    <div class="detail-value">${material.lis.transisi} batang</div>
-                </div>`;
-            } else {
-                rangkaDetails += `
-                <div class="detail-item">
-                    <div class="detail-label">Lis PVC</div>
-                    <div class="detail-value">${material.lis.dinding} batang</div>
-                </div>`;
-            }
-
-            let aksesoris = [];
-            if (data.silikon) aksesoris.push('Silikon');
-            if (data.sekrup) aksesoris.push('Sekrup');
-            if (data.furing) aksesoris.push('Furing Kayu');
-            if (aksesoris.length > 0) {
-                rangkaDetails += `
-                <div class="detail-item">
-                    <div class="detail-label">Aksesoris</div>
-                    <div class="detail-value">${aksesoris.join(', ')}</div>
-                </div>`;
-            }
-
-            rangkaDetails += `</div>`;
-            document.getElementById('rangkaDetails').innerHTML = rangkaDetails;
-
-            // Detail Penerangan
-            let peneranganDetails = '<div class="material-details">';
-
-            if (material.penerangan.downlight > 0) {
-                peneranganDetails += `
-                <div class="detail-item">
-                    <div class="detail-label">Downlight ${data.wattDownlight}W</div>
-                    <div class="detail-value">${material.penerangan.downlight} titik</div>
-                </div>`;
-
-                if (material.penerangan.posisi.length > 0 && material.penerangan.posisi.length <= 9) {
-                    peneranganDetails += `<div style="grid-column: 1 / -1; margin-top: 10px; padding: 10px; background: #f8f9fa; border-radius: 6px;">`;
-                    peneranganDetails += `<strong>Posisi Downlight (dari sudut kiri bawah):</strong><br>`;
-                    material.penerangan.posisi.forEach(pos => {
-                        peneranganDetails += `L${pos.no}: ${pos.x.toFixed(1)}m × ${pos.y.toFixed(1)}m<br>`;
-                    });
-                    peneranganDetails += `</div>`;
-                }
-            }
-
-            if (material.penerangan.ledStrip > 0) {
-                peneranganDetails += `
-                <div class="detail-item">
-                    <div class="detail-label">LED Strip ${data.tipeLED}</div>
-                    <div class="detail-value">${material.penerangan.ledStrip} m (${data.posisiLED})</div>
-                </div>`;
-            }
-
-            if (material.penerangan.lampuGantung > 0) {
-                peneranganDetails += `
-                <div class="detail-item">
-                    <div class="detail-label">Lampu Gantung (${data.tipeLampuGantung})</div>
-                    <div class="detail-value">${material.penerangan.lampuGantung} titik</div>
-                </div>`;
-            }
-
-            if (material.penerangan.totalDaya > 0) {
-                peneranganDetails += `
-                <div class="detail-item">
-                    <div class="detail-label">Total Daya</div>
-                    <div class="detail-value">${material.penerangan.totalDaya} Watt</div>
-                </div>`;
-            }
-
-            peneranganDetails += `</div>`;
-            document.getElementById('peneranganDetails').innerHTML = peneranganDetails;
-
-            // Detail Listrik
-            let listrikDetails = `
-            <div class="material-details">
-                <div class="detail-item">
-                    <div class="detail-label">Stop Kontak</div>
-                    <div class="detail-value">${material.listrik.stopKontak} titik</div>
-                </div>
-                <div class="detail-item">
-                    <div class="detail-label">Saklar</div>
-                    <div class="detail-value">${material.listrik.saklar} titik</div>
-                </div>
-                <div class="detail-item">
-                    <div class="detail-label">Kabel NYM 2×1.5</div>
-                    <div class="detail-value">${material.listrik.kabelNym} m</div>
-                </div>
-                <div class="detail-item">
-                    <div class="detail-label">Pipa Conduit</div>
-                    <div class="detail-value">${material.listrik.pipaConduit} m</div>
-                </div>
-                <div class="detail-item">
-                    <div class="detail-label">Box Saklar</div>
-                    <div class="detail-value">${material.listrik.boxSaklar} buah</div>
-                </div>
-                <div class="detail-item">
-                    <div class="detail-label">Box Stop Kontak</div>
-                    <div class="detail-value">${material.listrik.boxStopKontak} buah</div>
-                </div>
-            </div>`;
-            document.getElementById('listrikDetails').innerHTML = listrikDetails;
-
-            // Biaya
-            document.getElementById('costTotal').textContent = formatRupiah(biaya.total);
-            document.getElementById('costPlafon').textContent = formatRupiah(biaya.breakdown.plafon);
-            document.getElementById('costListrik').textContent = formatRupiah(biaya.breakdown.listrik);
-            document.getElementById('costJasa').textContent = formatRupiah(biaya.breakdown.jasa);
-        }
-
-        // ========== VISUALISASI ==========
-        function drawVisualization(data, material) {
-            const canvas = document.getElementById('visualCanvas');
-            const P = material.dimensi.P;
-            const L = material.dimensi.L;
-            const scale = 300;
-
-            let html = `
-            <div style="text-align: center;">
-                <div style="display: inline-block; position: relative; margin: 20px auto;">
-                    <div style="width: ${scale}px; height: ${(L / P) * scale}px; background: #f8f9fa; border: 3px solid #2c3e50; border-radius: 8px; position: relative;">`;
-
-            if (data.warnaPlafon === 'dua') {
-                const borderWidth = data.lebarBorder;
-                const borderPx = (borderWidth / P) * scale;
-                html += `
-                        <div style="position: absolute; top: 0; left: 0; right: 0; bottom: 0; border: ${borderPx}px solid ${WARNA[data.warnaBorder]}; border-radius: 5px;"></div>
-                        <div style="position: absolute; top: ${borderPx}px; left: ${borderPx}px; right: ${borderPx}px; bottom: ${borderPx}px; background: ${WARNA[data.warnaField]}; border-radius: 3px;"></div>`;
-            } else {
-                html += `<div style="position: absolute; top: 0; left: 0; right: 0; bottom: 0; background: ${WARNA.putih};"></div>`;
-            }
-
-            if (material.penerangan.posisi.length > 0) {
-                material.penerangan.posisi.forEach(pos => {
-                    const xPercent = (pos.x / P) * 100;
-                    const yPercent = (pos.y / L) * 100;
-                    html += `
-                        <div style="position: absolute; left: ${xPercent}%; top: ${yPercent}%; transform: translate(-50%, -50%); width: 12px; height: 12px; background: #f1c40f; border-radius: 50%; border: 2px solid #f39c12; box-shadow: 0 0 0 4px rgba(241, 196, 15, 0.3);"></div>`;
-                });
-            }
-
-            if (data.ledStrip && data.posisiLED.includes('cove')) {
-                html += `<div style="position: absolute; top: 10px; left: 10px; right: 10px; bottom: 10px; border: 2px dashed #00ff00; border-radius: 5px; opacity: 0.5;"></div>`;
-            }
-
-            if (data.lampuGantung) {
-                html += `
-                        <div style="position: absolute; left: 50%; top: 10px; width: 2px; height: 20px; background: #7f8c8d; transform: translateX(-50%);"></div>
-                        <div style="position: absolute; left: 50%; top: 30px; transform: translateX(-50%); width: 20px; height: 20px; background: #e67e22; border-radius: 50%; border: 2px solid #d35400; box-shadow: 0 0 10px rgba(230, 126, 34, 0.5);"></div>`;
-            }
-
-            html += `
-                    </div>
-                    
-                    <div style="margin-top: 20px; text-align: left; display: inline-block;">
-                        <div style="display: flex; align-items: center; margin: 5px 0;">
-                            <div style="width: 15px; height: 15px; background: ${data.warnaPlafon === 'dua' ? WARNA[data.warnaBorder] : '#FFFFFF'}; margin-right: 10px; border-radius: 3px; border: 1px solid #ddd;"></div>
-                            <span>${data.warnaPlafon === 'dua' ? 'Border ' + data.warnaBorder : 'Plafon Putih'}</span>
-                        </div>`;
-
-            if (data.warnaPlafon === 'dua') {
-                html += `
-                        <div style="display: flex; align-items: center; margin: 5px 0;">
-                            <div style="width: 15px; height: 15px; background: ${WARNA[data.warnaField]}; margin-right: 10px; border-radius: 3px; border: 1px solid #ddd;"></div>
-                            <span>Field ${data.warnaField}</span>
-                        </div>`;
-            }
-
-            if (material.penerangan.downlight > 0) {
-                html += `
-                        <div style="display: flex; align-items: center; margin: 5px 0;">
-                            <div style="width: 15px; height: 15px; background: #f1c40f; border-radius: 50%; margin-right: 10px;"></div>
-                            <span>Downlight (${material.penerangan.downlight} titik)</span>
-                        </div>`;
-            }
-
-            if (data.ledStrip) {
-                html += `
-                        <div style="display: flex; align-items: center; margin: 5px 0;">
-                            <div style="width: 15px; height: 15px; background: #00ff00; border-radius: 3px; margin-right: 10px;"></div>
-                            <span>LED Strip (${data.posisiLED})</span>
-                        </div>`;
-            }
-
-            if (data.lampuGantung) {
-                html += `
-                        <div style="display: flex; align-items: center; margin: 5px 0;">
-                            <div style="width: 15px; height: 15px; background: #e67e22; border-radius: 50%; margin-right: 10px;"></div>
-                            <span>Lampu Gantung</span>
-                        </div>`;
-            }
-
-            html += `
-                    </div>
-                </div>
                 
-                <div style="margin-top: 15px; color: #6c757d; font-size: 14px;">
-                    <strong>${data.namaProyek}</strong><br>
-                    ${P.toFixed(2)}m × ${L.toFixed(2)}m | ${material.dimensi.luas.toFixed(2)} m² | ${data.modelPlafon === 'drop' ? 'Drop Ceiling' : 'Flat Ceiling'}
+            } else if (data.model === 'flat2warna') {
+                // FLAT 2 WARNA
+                const lebarBorderM = data.lebarBorder / 100;
+                const luasBorder = keliling * lebarBorderM;
+                const luasFiled = luasTotal - luasBorder;
+                
+                hasil.bagian = {
+                    filed: luasFiled,
+                    border: luasBorder
+                };
+                hasil.pvc = {
+                    filed: hitungKebutuhanPVC(luasFiled, data.panjangPVC, data.lebarPVC, 1.1),
+                    border: hitungKebutuhanPVC(luasBorder, data.panjangPVC, data.lebarPVC, 1.2) // +20% waste untuk border
+                };
+                hasil.lis = {
+                    dinding: Math.ceil(keliling / 4),
+                    transisi: Math.ceil(keliling / 4)
+                };
+                
+            } else if (data.model === 'dropPinggir') {
+                // DROP PINGGIR
+                const lebarDropM = data.lebarDropPinggir / 100;
+                const luasDrop = keliling * lebarDropM;
+                const luasFiled = luasTotal - luasDrop;
+                const kelilingDrop = keliling; // drop mengelilingi
+                
+                hasil.bagian = {
+                    filed: luasFiled,
+                    dropPinggir: luasDrop,
+                    tinggiDrop: data.tinggiDropPinggir
+                };
+                hasil.pvc = {
+                    filed: hitungKebutuhanPVC(luasFiled, data.panjangPVC, data.lebarPVC, 1.1),
+                    dropPinggir: hitungKebutuhanPVC(luasDrop, data.panjangPVC, data.lebarPVC, 1.15) // +15% waste untuk drop
+                };
+                hasil.lis = {
+                    dinding: Math.ceil(keliling / 4),
+                    siku: Math.ceil(kelilingDrop / 4),
+                    tutup: Math.ceil(kelilingDrop / 4)
+                };
+                
+            } else if (data.model === 'dropTengah') {
+                // DROP TENGAH
+                const jarakM = data.jarakDropTengah / 100;
+                const lebarFiledM = data.lebarFiledDropTengah / 100;
+                
+                // Hitung drop tengah
+                const panjangDrop = P - (2 * jarakM);
+                const lebarDrop = L - (2 * jarakM);
+                const luasDrop = Math.max(0, panjangDrop) * Math.max(0, lebarDrop);
+                
+                // Hitung filed (area antara drop dan dinding)
+                const luasFiled = luasTotal - luasDrop;
+                const kelilingDrop = 2 * (panjangDrop + lebarDrop);
+                
+                hasil.bagian = {
+                    filed: luasFiled,
+                    dropTengah: luasDrop,
+                    tinggiDrop: data.tinggiDropTengah,
+                    lebarFiled: data.lebarFiledDropTengah
+                };
+                hasil.pvc = {
+                    filed: hitungKebutuhanPVC(luasFiled, data.panjangPVC, data.lebarPVC, 1.1),
+                    dropTengah: hitungKebutuhanPVC(luasDrop, data.panjangPVC, data.lebarPVC, 1.15)
+                };
+                hasil.lis = {
+                    dinding: Math.ceil(keliling / 4),
+                    siku: Math.ceil(kelilingDrop / 4),
+                    tutup: Math.ceil(kelilingDrop / 4)
+                };
+                
+            } else if (data.model === 'dropGabungan') {
+                // DROP GABUNGAN (Pinggir + Filed + Tengah)
+                const lebarDropPinggirM = data.lebarDropGabPinggir / 100;
+                const lebarFiledM = data.lebarFiledGabungan / 100;
+                const jarakTengahM = lebarDropPinggirM + lebarFiledM; // Drop tengah dimulai setelah filed
+                
+                // Hitung drop pinggir
+                const luasDropPinggir = keliling * lebarDropPinggirM;
+                const kelilingDropPinggir = keliling;
+                
+                // Hitung filed (area antara drop pinggir dan drop tengah)
+                const panjangFiled = P - (2 * lebarDropPinggirM);
+                const lebarFiled = L - (2 * lebarDropPinggirM);
+                const luasFiled = Math.max(0, panjangFiled) * Math.max(0, lebarFiled) - 
+                                 (Math.max(0, panjangFiled - 2 * lebarFiledM) * Math.max(0, lebarFiled - 2 * lebarFiledM));
+                
+                // Hitung drop tengah
+                const panjangDropTengah = P - (2 * jarakTengahM);
+                const lebarDropTengah = L - (2 * jarakTengahM);
+                const luasDropTengah = Math.max(0, panjangDropTengah) * Math.max(0, lebarDropTengah);
+                const kelilingDropTengah = 2 * (panjangDropTengah + lebarDropTengah);
+                
+                hasil.bagian = {
+                    dropPinggir: luasDropPinggir,
+                    filed: luasFiled,
+                    dropTengah: luasDropTengah,
+                    tinggiDropPinggir: data.tinggiDropGabPinggir,
+                    tinggiDropTengah: data.tinggiDropGabTengah
+                };
+                hasil.pvc = {
+                    dropPinggir: hitungKebutuhanPVC(luasDropPinggir, data.panjangPVC, data.lebarPVC, 1.15),
+                    filed: hitungKebutuhanPVC(luasFiled, data.panjangPVC, data.lebarPVC, 1.1),
+                    dropTengah: hitungKebutuhanPVC(luasDropTengah, data.panjangPVC, data.lebarPVC, 1.15)
+                };
+                hasil.lis = {
+                    dinding: Math.ceil(keliling / 4),
+                    siku: Math.ceil((kelilingDropPinggir + kelilingDropTengah) / 4),
+                    tutup: Math.ceil((kelilingDropPinggir + kelilingDropTengah) / 4),
+                    transisi: Math.ceil(kelilingDropPinggir / 4) // antara drop pinggir dan filed
+                };
+            }
+            
+            // Hitung total PVC
+            hasil.pvc.totalLembar = Object.values(hasil.pvc).reduce((sum, val) => sum + (typeof val === 'number' ? val : 0), 0);
+            
+            // Hitung hollow rangka
+            const jumlahHollowUtama = Math.ceil(L / data.jarakHollowUtama) + 1;
+            const jumlahHollowCross = Math.ceil(P / data.jarakHollowCross) + 1;
+            const batangHollowPinggir = Math.ceil(keliling / 4);
+            const totalPanjangRangka = (jumlahHollowUtama * P) + (jumlahHollowCross * L) + (batangHollowPinggir * 4);
+            hasil.hollow.rangka = Math.ceil(totalPanjangRangka / 4);
+            
+            // Hollow tambahan
+            hasil.hollow.tambahan = data.tambahHollow;
+            hasil.hollow.total = hasil.hollow.rangka + hasil.hollow.tambahan;
+            
+            // Hitung biaya
+            hasil.biaya = hitungBiayaDetail(data, hasil);
+            
+            return hasil;
+        }
+
+        function hitungKebutuhanPVC(luas, panjangPVC, lebarPVC, faktorWaste) {
+            const luasPerLembar = panjangPVC * lebarPVC;
+            return Math.ceil((luas / luasPerLembar) * faktorWaste);
+        }
+
+        function hitungBiayaDetail(data, hasil) {
+            // Harga PVC
+            const hargaPVC = data.kualitasPVC === 'sni' ? harga.pvcSni : harga.pvcStandard;
+            const hargaPerLembarPVC = hargaPVC[data.panjangPVC.toString()] || hargaPVC['4'];
+            const biayaPVC = hasil.pvc.totalLembar * hargaPerLembarPVC;
+            
+            // Harga Lis
+            let biayaLis = 0;
+            if (hasil.lis.dinding) biayaLis += hasil.lis.dinding * harga.lis.dinding;
+            if (hasil.lis.transisi) biayaLis += hasil.lis.transisi * harga.lis.transisi;
+            if (hasil.lis.siku) biayaLis += hasil.lis.siku * harga.lis.siku;
+            if (hasil.lis.tutup) biayaLis += hasil.lis.tutup * harga.lis.tutup;
+            
+            // Harga Hollow
+            const hargaPerBatangHollow = harga.hollow.standard; // untuk rangka
+            const biayaHollowRangka = hasil.hollow.rangka * hargaPerBatangHollow;
+            
+            // Harga Hollow Tambahan
+            const hargaHollowTambahan = harga.hollow[data.tipeHollowTambahan] || harga.hollow['4x4'];
+            const biayaHollowTambahan = hasil.hollow.tambahan * hargaHollowTambahan;
+            
+            // Harga Downlight
+            const hargaDownlight = harga.penerangan[`downlight${data.wattDownlight}`] || harga.penerangan.downlight12;
+            const biayaDownlight = data.jumlahDownlight * hargaDownlight;
+            
+            // Harga Aksesoris
+            const kebutuhanSekrupPVC = Math.ceil(hasil.pvc.totalLembar * 10); // 10 sekrup per lembar
+            const kebutuhanSekrupHollow = Math.ceil(hasil.hollow.rangka * 20); // 20 sekrup per batang
+            const biayaSekrupPVC = Math.ceil(kebutuhanSekrupPVC / 100) * harga.aksesoris.sekrupPvc;
+            const biayaSekrupHollow = Math.ceil(kebutuhanSekrupHollow / 100) * harga.aksesoris.sekrupHollow;
+            const biayaSilikon = Math.ceil(hasil.pvc.totalLembar * 0.3) * harga.aksesoris.silikon; // 0.3 tube per lembar
+            
+            // Harga Jasa
+            const hargaJasaPerM2 = harga.jasa[data.model] || harga.jasa.flat1warna;
+            const biayaJasa = (data.P * data.L) * hargaJasaPerM2;
+            
+            // Total
+            const totalMaterial = biayaPVC + biayaLis + biayaHollowRangka + biayaHollowTambahan + 
+                                biayaDownlight + biayaSekrupPVC + biayaSekrupHollow + biayaSilikon;
+            const totalBiaya = totalMaterial + biayaJasa;
+            const totalPPN = totalBiaya * 0.11;
+            const totalAll = Math.round(totalBiaya + totalPPN);
+            
+            return {
+                pvc: biayaPVC,
+                lis: biayaLis,
+                hollowRangka: biayaHollowRangka,
+                hollowTambahan: biayaHollowTambahan,
+                downlight: biayaDownlight,
+                aksesoris: biayaSekrupPVC + biayaSekrupHollow + biayaSilikon,
+                material: totalMaterial,
+                jasa: biayaJasa,
+                ppn: totalPPN,
+                total: totalAll
+            };
+        }
+
+        function tampilkanHasilDetail(data, hasil) {
+            // Update totals
+            document.getElementById('totalLuas').textContent = (data.P * data.L).toFixed(2) + ' m²';
+            document.getElementById('totalPVC').textContent = hasil.pvc.totalLembar + ' LEMBAR';
+            document.getElementById('totalLis').textContent = Object.values(hasil.lis).reduce((a, b) => a + b, 0) + ' BATANG';
+            document.getElementById('totalHollow').textContent = hasil.hollow.total + ' BATANG';
+
+            // ========== RINCIAN BAGIAN ==========
+            let htmlBagian = '<div class="bagian-detail">';
+            
+            if (data.model === 'flat') {
+                htmlBagian += `
+                    <div class="bagian-title">📦 Flat 1 Warna</div>
+                    <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 10px;">
+                        <div><strong>Filed:</strong> ${hasil.bagian.filed.toFixed(2)} m²</div>
+                        <div><strong>Lis:</strong> Dinding saja</div>
+                    </div>
+                `;
+            } else if (data.model === 'flat2warna') {
+                htmlBagian += `
+                    <div class="bagian-title">🎨 Flat 2 Warna</div>
+                    <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 10px; margin-bottom: 10px;">
+                        <div><strong>Filed Utama:</strong> ${hasil.bagian.filed.toFixed(2)} m²</div>
+                        <div><strong>Border:</strong> ${data.lebarBorder} cm</div>
+                    </div>
+                    <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 10px;">
+                        <div><strong>Luas Border:</strong> ${hasil.bagian.border.toFixed(2)} m²</div>
+                        <div><strong>Lis:</strong> Dinding + Transisi</div>
+                    </div>
+                `;
+            } else if (data.model === 'dropPinggir') {
+                htmlBagian += `
+                    <div class="bagian-title">📐 Drop Pinggir</div>
+                    <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 10px; margin-bottom: 10px;">
+                        <div><strong>Filed:</strong> ${hasil.bagian.filed.toFixed(2)} m²</div>
+                        <div><strong>Drop Pinggir:</strong> ${data.lebarDropPinggir} cm</div>
+                    </div>
+                    <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 10px;">
+                        <div><strong>Tinggi Turun:</strong> ${data.tinggiDropPinggir} cm</div>
+                        <div><strong>Lis:</strong> Dinding + Siku + Tutup</div>
+                    </div>
+                `;
+            } else if (data.model === 'dropTengah') {
+                htmlBagian += `
+                    <div class="bagian-title">🎯 Drop Tengah</div>
+                    <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 10px; margin-bottom: 10px;">
+                        <div><strong>Filed Pinggir:</strong> ${hasil.bagian.filed.toFixed(2)} m²</div>
+                        <div><strong>Lebar Filed:</strong> ${data.lebarFiledDropTengah} cm</div>
+                    </div>
+                    <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 10px; margin-bottom: 10px;">
+                        <div><strong>Drop Tengah:</strong> ${hasil.bagian.dropTengah.toFixed(2)} m²</div>
+                        <div><strong>Tinggi Turun:</strong> ${data.tinggiDropTengah} cm</div>
+                    </div>
+                    <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 10px;">
+                        <div><strong>Jarak dari Dinding:</strong> ${data.jarakDropTengah} cm</div>
+                        <div><strong>Lis:</strong> Dinding + Siku + Tutup</div>
+                    </div>
+                `;
+            } else if (data.model === 'dropGabungan') {
+                htmlBagian += `
+                    <div class="bagian-title">✨ Drop Gabungan</div>
+                    <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 10px; margin-bottom: 10px;">
+                        <div><strong>Drop Pinggir:</strong> ${hasil.bagian.dropPinggir.toFixed(2)} m²</div>
+                        <div><strong>Tinggi:</strong> ${data.tinggiDropGabPinggir} cm</div>
+                    </div>
+                    <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 10px; margin-bottom: 10px;">
+                        <div><strong>Filed:</strong> ${hasil.bagian.filed.toFixed(2)} m²</div>
+                        <div><strong>Lebar Filed:</strong> ${data.lebarFiledGabungan} cm</div>
+                    </div>
+                    <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 10px;">
+                        <div><strong>Drop Tengah:</strong> ${hasil.bagian.dropTengah.toFixed(2)} m²</div>
+                        <div><strong>Tinggi:</strong> ${data.tinggiDropGabTengah} cm</div>
+                    </div>
+                `;
+            }
+            
+            htmlBagian += '</div>';
+            document.getElementById('detailBagian').innerHTML = htmlBagian;
+
+            // ========== DETAIL PVC PER BAGIAN ==========
+            let htmlPVC = '';
+            Object.entries(hasil.pvc).forEach(([key, value]) => {
+                if (key !== 'totalLembar' && typeof value === 'number' && value > 0) {
+                    const bagianName = getNamaBagian(key);
+                    htmlPVC += `
+                        <div class="detail-item">
+                            <div class="detail-label">${bagianName}</div>
+                            <div class="detail-value">${value} lembar</div>
+                        </div>
+                    `;
+                }
+            });
+            
+            htmlPVC += `
+                <div class="detail-item" style="grid-column: span 2; background: #f8f9fa;">
+                    <div class="detail-label"><strong>TOTAL SEMUA PVC</strong></div>
+                    <div class="detail-value" style="color: var(--danger); font-size: 18px;">${hasil.pvc.totalLembar} lembar</div>
                 </div>
-            </div>`;
+            `;
+            
+            document.getElementById('detailPVC').innerHTML = `
+                <div class="material-details">
+                    ${htmlPVC}
+                </div>
+            `;
 
-            canvas.innerHTML = html;
+            // ========== DETAIL LIS ==========
+            let htmlLis = '';
+            Object.entries(hasil.lis).forEach(([key, value]) => {
+                if (value > 0) {
+                    const lisName = getNamaLis(key);
+                    htmlLis += `
+                        <div class="detail-item">
+                            <div class="detail-label">${lisName}</div>
+                            <div class="detail-value">${value} batang</div>
+                        </div>
+                    `;
+                }
+            });
+            
+            const totalLis = Object.values(hasil.lis).reduce((a, b) => a + b, 0);
+            htmlLis += `
+                <div class="detail-item" style="grid-column: span 2; background: #f8f9fa;">
+                    <div class="detail-label"><strong>TOTAL SEMUA LIS</strong></div>
+                    <div class="detail-value" style="color: var(--danger); font-size: 18px;">${totalLis} batang</div>
+                </div>
+            `;
+            
+            document.getElementById('detailLis').innerHTML = `
+                <div class="material-details">
+                    ${htmlLis}
+                </div>
+            `;
+
+            // ========== DETAIL HOLLOW ==========
+            let htmlHollow = `
+                <div class="material-details">
+                    <div class="detail-item">
+                        <div class="detail-label">Hollow Rangka</div>
+                        <div class="detail-value">${hasil.hollow.rangka} batang</div>
+                    </div>
+            `;
+            
+            if (hasil.hollow.tambahan > 0) {
+                htmlHollow += `
+                    <div class="detail-item">
+                        <div class="detail-label">Hollow Tambahan (${data.tipeHollowTambahan})</div>
+                        <div class="detail-value">${hasil.hollow.tambahan} batang</div>
+                    </div>
+                `;
+            }
+            
+            htmlHollow += `
+                    <div class="detail-item" style="grid-column: span 2; background: #f8f9fa;">
+                        <div class="detail-label"><strong>TOTAL HOLLOW</strong></div>
+                        <div class="detail-value" style="color: var(--danger); font-size: 18px;">${hasil.hollow.total} batang</div>
+                    </div>
+                    <div class="detail-item">
+                        <div class="detail-label">Downlight ${data.wattDownlight}W</div>
+                        <div class="detail-value">${data.jumlahDownlight} buah</div>
+                    </div>
+                </div>
+            `;
+            
+            document.getElementById('detailHollow').innerHTML = htmlHollow;
+
+            // ========== TOTAL BIAYA ==========
+            let costHTML = `
+                <div style="text-align: left; max-width: 600px; margin: 0 auto;">
+                    <div style="display: grid; grid-template-columns: 2fr 1fr; gap: 10px; margin-bottom: 5px;">
+                        <div>Biaya PVC:</div>
+                        <div>${formatRupiah(hasil.biaya.pvc)}</div>
+                    </div>
+                    <div style="display: grid; grid-template-columns: 2fr 1fr; gap: 10px; margin-bottom: 5px;">
+                        <div>Biaya Lis:</div>
+                        <div>${formatRupiah(hasil.biaya.lis)}</div>
+                    </div>
+                    <div style="display: grid; grid-template-columns: 2fr 1fr; gap: 10px; margin-bottom: 5px;">
+                        <div>Biaya Hollow:</div>
+                        <div>${formatRupiah(hasil.biaya.hollowRangka + hasil.biaya.hollowTambahan)}</div>
+                    </div>
+                    <div style="display: grid; grid-template-columns: 2fr 1fr; gap: 10px; margin-bottom: 5px; border-top: 1px solid rgba(255,255,255,0.3); padding-top: 10px;">
+                        <div><strong>Total Material:</strong></div>
+                        <div><strong>${formatRupiah(hasil.biaya.material)}</strong></div>
+                    </div>
+                    <div style="display: grid; grid-template-columns: 2fr 1fr; gap: 10px; margin-bottom: 5px;">
+                        <div>Biaya Jasa:</div>
+                        <div>${formatRupiah(hasil.biaya.jasa)}</div>
+                    </div>
+                    <div style="display: grid; grid-template-columns: 2fr 1fr; gap: 10px; margin-bottom: 5px;">
+                        <div>PPN 11%:</div>
+                        <div>${formatRupiah(hasil.biaya.ppn)}</div>
+                    </div>
+                    <div style="display: grid; grid-template-columns: 2fr 1fr; gap: 10px; margin-top: 10px; padding-top: 10px; border-top: 2px solid rgba(255,255,255,0.5); font-size: 20px;">
+                        <div><strong>TOTAL BIAYA:</strong></div>
+                        <div><strong>${formatRupiah(hasil.biaya.total)}</strong></div>
+                    </div>
+                </div>
+            `;
+            
+            document.getElementById('costTotal').innerHTML = costHTML;
         }
 
-        // ========== FORMAT RUPIAH ==========
+        function getNamaBagian(key) {
+            const names = {
+                'filed': 'Filed Utama',
+                'border': 'Border',
+                'dropPinggir': 'Drop Pinggir',
+                'dropTengah': 'Drop Tengah'
+            };
+            return names[key] || key;
+        }
+
+        function getNamaLis(key) {
+            const names = {
+                'dinding': 'Lis Dinding',
+                'transisi': 'Lis Transisi',
+                'siku': 'Lis Siku',
+                'tutup': 'Lis Tutup'
+            };
+            return names[key] || key;
+        }
+
         function formatRupiah(angka) {
-            return 'Rp ' + angka.toLocaleString('id-ID');
+            return 'Rp ' + Math.round(angka).toLocaleString('id-ID');
         }
 
-        // ========== RESET KALKULATOR ==========
         function resetCalculator() {
+            // Reset input
+            document.getElementById('panjang').value = 4;
+            document.getElementById('lebar').value = 3;
+            document.getElementById('tambahHollow').value = 0;
+            document.getElementById('jumlahDownlight').value = 4;
+            
+            // Reset ke tab pertama
+            switchTab('ukuran');
+            
+            // Reset hasil
             document.getElementById('resultsPanel').style.display = 'none';
+            
+            // Update
+            updateLuas();
+            
+            // Scroll ke atas
             window.scrollTo({ top: 0, behavior: 'smooth' });
         }
 
         // ========== INITIALIZE ==========
-        document.addEventListener('DOMContentLoaded', function () {
-            updatePreview();
-            updateAllCalculations();
-
-            // Event listeners untuk semua input
-            document.querySelectorAll('input, select').forEach(input => {
-                if (input.id !== 'namaProyek' && input.type !== 'text') {
-                    input.addEventListener('input', updateAllCalculations);
-                }
+        document.addEventListener('DOMContentLoaded', function() {
+            // Event listeners
+            document.getElementById('panjang').addEventListener('input', updateLuas);
+            document.getElementById('lebar').addEventListener('input', updateLuas);
+            
+            document.querySelectorAll('input[name="modelPlafon"]').forEach(radio => {
+                radio.addEventListener('change', updateModelSettings);
             });
-
-            document.getElementById('downlight').addEventListener('change', function () {
-                toggleDownlightOptions();
-                updateAllCalculations();
-            });
-
-            document.getElementById('ledStrip').addEventListener('change', function () {
-                toggleLEDOptions();
-                updateAllCalculations();
-            });
-
-            document.getElementById('lampuGantung').addEventListener('change', function () {
-                toggleLampuGantungOptions();
-                updateAllCalculations();
-            });
-
-            document.getElementById('drop').addEventListener('change', toggleDropOptions);
-            document.getElementById('flat').addEventListener('change', function () {
-                document.getElementById('dropOptions').classList.remove('show');
-                updateAllCalculations();
-            });
-
-            document.getElementById('duaWarna').addEventListener('change', toggleWarnaOptions);
-            document.getElementById('satuWarna').addEventListener('change', function () {
-                document.getElementById('duaWarnaOptions').classList.remove('show');
-                updateAllCalculations();
-            });
-
-            // Initial calculations
-            hitungListrikOtomatis();
-            updateLEDCalculation();
-            updateRealTimeCalc();
+            
+            // Initial setup
+            updateLuas();
+            updateModelSettings();
         });
 
-
-        const PASSWORDS = ["tukang2025"];
+         const PASSWORDS = ["tukang2025"];
         let attempts = 0;
         const maxAttempts = 3;
 
@@ -2076,9 +1389,5 @@
     `;
         }
     </script>
-
-
 </body>
-
 </html>
-
