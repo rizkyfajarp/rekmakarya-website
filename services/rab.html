@@ -921,51 +921,86 @@
                 };
                 
             } } else if (data.model === 'dropPinggir') {
-    // DROP PINGGIR - PERHITUNGAN YANG AKURAT
+    // DROP PINGGIR - PERHITUNGAN MATEMATIS YANG BENAR
     const lebarDropM = data.lebarDropPinggir / 100; // 40cm = 0.4m
     
-    // Contoh untuk ruangan 4x3 meter:
-    // Luas total = 4 × 3 = 12 m²
-    const luasTotal = P * L;
+    // ============================================
+    // 1. UKURAN FIELD TENGAH YANG BENAR
+    // ============================================
+    const panjangFiled = Math.max(0.1, P - 2 * lebarDropM); // 4 - 0.8 = 3.2m
+    const lebarFiled = Math.max(0.1, L - 2 * lebarDropM);   // 3 - 0.8 = 2.2m
+    const luasFiled = panjangFiled * lebarFiled;            // 3.2 × 2.2 = 7.04 m²
     
-    // Keliling = 2×(4+3) = 14 m
-    const keliling = 2 * (P + L);
+    // ============================================
+    // 2. LUAS DROP YANG BENAR
+    // ============================================
+    const luasTotal = P * L;                                // 12 m²
+    const luasDrop = luasTotal - luasFiled;                 // 12 - 7.04 = 4.96 m²
     
-    // Luas drop = keliling × lebar drop
-    // = 14 × 0.4 = 5.6 m²
-    const luasDrop = keliling * lebarDropM;
+    // ============================================
+    // 3. HITUNG PVC FIELD (cara tukang yang tepat)
+    // ============================================
+    // Lebar field 2.2m = 220cm, PVC lebar 20cm
+    // Butuh: 220cm ÷ 20cm = 11 strip
+    const pvcField = Math.ceil(lebarFiled / data.lebarPVC); // 2.2 ÷ 0.2 = 11 lembar
     
-    // Luas filed = luas total - luas drop
-    // = 12 - 5.6 = 6.4 m²
-    const luasFiled = Math.max(0.1, luasTotal - luasDrop); // minimal 0.1 m²
+    // ============================================
+    // 4. HITUNG PVC DROP (cara tukang yang tepat)
+    // ============================================
+    const keliling = 2 * (P + L);                           // 14 m
     
-    // Keliling drop bagian dalam (untuk lis siku)
-    const panjangDalam = Math.max(0.1, P - 2 * lebarDropM); // 4 - 0.8 = 3.2 m
-    const lebarDalam = Math.max(0.1, L - 2 * lebarDropM);   // 3 - 0.8 = 2.2 m
-    const kelilingDropDalam = 2 * (panjangDalam + lebarDalam); // 2×(3.2+2.2) = 10.8 m
+    // Cara 1: Berdasarkan luas
+    const luasPerLembar = data.panjangPVC * data.lebarPVC;  // 4 × 0.2 = 0.8 m²
+    const pvcDropDariLuas = Math.ceil(luasDrop / luasPerLembar * 1.15); // 4.96 ÷ 0.8 × 1.15 = 7.13 ≈ 8 lembar
+    
+    // Cara 2: Berdasarkan keliling (lebih akurat untuk drop)
+    // Drop pinggir 40cm butuh 2 lapis PVC (karena PVC lebar 20cm)
+    const batangPerLapis = Math.ceil(keliling / data.panjangPVC); // 14 ÷ 4 = 4 batang
+    const lapisDibutuhkan = Math.ceil(lebarDropM / data.lebarPVC); // 0.4 ÷ 0.2 = 2 lapis
+    const pvcDropDariKeliling = batangPerLapis * lapisDibutuhkan; // 4 × 2 = 8 lembar
+    
+    // Ambil nilai yang lebih kecil (realistis)
+    const pvcDrop = Math.min(pvcDropDariLuas, pvcDropDariKeliling);
+    
+    // ============================================
+    // 5. SIMPAN HASIL
+    // ============================================
+    const kelilingDropDalam = 2 * (panjangFiled + lebarFiled); // 10.8 m
     
     hasil.bagian = {
         filed: parseFloat(luasFiled.toFixed(2)),
         dropPinggir: parseFloat(luasDrop.toFixed(2)),
+        ukuranFiled: `${(panjangFiled*100).toFixed(0)}cm × ${(lebarFiled*100).toFixed(0)}cm`,
         tinggiDrop: data.tinggiDropPinggir,
+        lebarDrop: data.lebarDropPinggir,
         kelilingDrop: parseFloat(kelilingDropDalam.toFixed(2))
     };
     
-    // PVC dengan waste
     hasil.pvc = {
-        filed: hitungKebutuhanPVC(luasFiled, data.panjangPVC, data.lebarPVC, 1.1),
-        dropPinggir: hitungKebutuhanPVC(luasDrop, data.panjangPVC, data.lebarPVC, 1.15)
+        filed: pvcField,
+        dropPinggir: pvcDrop,
+        total: pvcField + pvcDrop
     };
     
-    // Lis
+    // ============================================
+    // 6. LIS
+    // ============================================
     hasil.lis = {
         dinding: Math.ceil(keliling / 4),
         siku: Math.ceil(kelilingDropDalam / 4),
         tutup: Math.ceil(keliling / 4)
     };
-}
-                
-            } } else if (data.model === 'dropTengah') {
+    
+    // ============================================
+    // 7. LOG HASIL
+    // ============================================
+    console.log(`✅ DROP PINGGIR ${P}m × ${L}m:`);
+    console.log(`   Field: ${panjangFiled}m × ${lebarFiled}m = ${luasFiled}m²`);
+    console.log(`   PVC Field: ${lebarFiled}m ÷ ${data.lebarPVC}m = ${pvcField} lembar`);
+    console.log(`   Drop: ${luasDrop}m²`);
+    console.log(`   PVC Drop: ${pvcDrop} lembar (${pvcDropDariLuas} dari luas, ${pvcDropDariKeliling} dari keliling)`);
+    console.log(`   Total PVC: ${pvcField + pvcDrop} lembar`);
+} else if (data.model === 'dropTengah') {
     // DROP TENGAH - PERBAIKAN
     const jarakM = data.jarakDropTengah / 100;          // jarak dari dinding (50cm = 0.5m)
     const lebarFiledM = data.lebarFiledDropTengah / 100; // lebar filed pinggir (60cm = 0.6m)
@@ -1002,7 +1037,7 @@
     };
 }
                 
-            } } else if (data.model === 'dropGabungan') {
+             } else if (data.model === 'dropGabungan') {
     // DROP GABUNGAN - PERBAIKAN
     const lebarDropPinggirM = data.lebarDropGabPinggir / 100;    // 30cm = 0.3m
     const lebarFiledM = data.lebarFiledGabungan / 100;           // 50cm = 0.5m
@@ -1456,4 +1491,5 @@ function verifikasiSemuaModel(data) {
     </script>
 </body>
 </html>
+
 
